@@ -1,0 +1,25 @@
+-- need to look for posts only in hackforums
+-- need to include more words to search on to get more range
+-- maybe in total take out 5000 (1000 ildi and me, 200 eliza and segev, 200 ben and dan, 200 rita and alice,
+
+-- only want to take the content and post id
+
+-- to download a file:
+-- scp sgw36@shalmaneser6.sec.cl.cam.ac.uk:~/filename /Users/suziewelby/year3/compsci/project
+
+-- for testing matching and doing some cleaning
+\copy (select * from "Post" where "Content" like '%woman%' limit 20) TO '~/woman20.csv' WITH CSV HEADER;
+
+-- hackforums has site index 0, case insensitive matching of strings anywhere in post (so plurals and girlfriend should also be matched)
+-- got rid of 'her' because it was matching with there etc
+
+-- extraction attempt 1:
+select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|women|she|girl|female|lady|ladies|relationship|gender|pack)' limit 3000
+
+-- extraction attempt 2:
+-- limit length to 3000 chars
+select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|women|she|girl|female|lady|ladies|relationship|gender|pack)' and char_length("Content") < 3000 limit 3000
+
+-- extraction attempt 3
+-- add white space to matches to get words on their own
+select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|women|\s+she\s+|\s+her\s+|girl|female|lady|ladies|relationship|gender|pack)' and char_length("Content") < 3000 limit 3000
