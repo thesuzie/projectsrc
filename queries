@@ -26,4 +26,8 @@ select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|wo
 
 -- extraction attempt 4:
 -- removed pack from key word search
-select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|women|\s+she\s+|\s+her\s+|girl|female|lady|ladies|relationship|gender)' and char_length("Content") < 3000 limit 3000
+select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|women|\s+she\s+|\s+her\s+|girl|female|lady|ladies|relationship|gender)' and char_length("Content") < 3000 limit 5000
+
+-- extraction 5:
+-- for annotation
+\copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|women|\s+she\s+|\s+her\s+|girl|female|lady|ladies)' and char_length("Content") < 3000 limit 10000) TO '~/tenthousand.csv' WITH CSV HEADER;
