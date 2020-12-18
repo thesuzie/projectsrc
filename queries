@@ -29,5 +29,22 @@ select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|wo
 select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|women|\s+she\s+|\s+her\s+|girl|female|lady|ladies|relationship|gender)' and char_length("Content") < 3000 limit 5000
 
 -- extraction 5:
--- for annotation
+-- for  fist attempt at annotation with additional annotators
 \copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|women|\s+she\s+|\s+her\s+|girl|female|lady|ladies)' and char_length("Content") < 3000 limit 10000) TO '~/tenthousand.csv' WITH CSV HEADER;
+
+
+-- extraction based on just single keywords:
+-- women:
+\copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|women)' and char_length("Content") < 3000 limit 200) TO '~/keyword/women.csv' WITH CSV HEADER;
+-- bitch:
+\copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(bitch)' and char_length("Content") < 3000 limit 200) TO '~/keyword/bitch.csv' WITH CSV HEADER;
+-- girl:
+\copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(girl)' and char_length("Content") < 3000 limit 200) TO '~/keyword/girl.csv' WITH CSV HEADER;
+-- lady:
+\copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(lady|ladies)' and char_length("Content") < 3000 limit 200) TO '~/keyword/lady.csv' WITH CSV HEADER;
+-- female
+\copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(female)' and char_length("Content") < 3000 limit 200) TO '~/keyword/female.csv' WITH CSV HEADER;
+
+
+
+
