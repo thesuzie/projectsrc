@@ -44,6 +44,15 @@ select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|wo
 \copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(lady|ladies)' and char_length("Content") < 3000 limit 200) TO '~/keyword/lady.csv' WITH CSV HEADER;
 -- female
 \copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(female)' and char_length("Content") < 3000 limit 200) TO '~/keyword/female.csv' WITH CSV HEADER;
+-- whore
+\copy (select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(whore)' and char_length("Content") < 3000 limit 200) TO '~/keyword/whore.csv' WITH CSV HEADER;
+
+-- extraction for attempted labelling with new categories
+\copy (select "IdPost", "Content", "Thread" from "Post" where "Site"=0 and "Content" ~*'(woman|women|girl|female|lady|ladies)' and char_length("Content") < 3000 limit 10000) TO '~/newsearch.csv' WITH CSV HEADER;
+
+-- improvement on last attempt
+-- ladies gave lots of posts like "hi ladies and gentlemen" etc and girl picked up girlfriend mentioned in random stories
+\copy (select "IdPost", "Content", "Thread" from "Post" where "Site"=0 and "Content" ~*'(woman|women|girl\s+|girls\s+|female|lady)' and char_length("Content") < 3000 limit 10000) TO '~/rawdataset.csv' WITH CSV HEADER;
 
 
 
