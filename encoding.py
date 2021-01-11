@@ -5,11 +5,13 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import pandas as pd
 
+
 # TODO:
 # encoding
 
 # need to have just one main function that takes in the dataframe and returns it encoded
 # could do one main for tokenisation and cleaning and then each new one for different encodings
+
 
 def clean(content):  # content is a string
     # remove links
@@ -21,13 +23,15 @@ def clean(content):  # content is a string
     cleaned = re.sub(usrnm, "", cleaned)
 
     # remove punctuation and numbers
-    cleaned = cleaned.translate(str.maketrans('', '', string.punctuation))
+    punct = string.punctuation
+    punct.__add__('’')
+    cleaned = cleaned.translate(str.maketrans('', '', punct))
     cleaned = cleaned.translate(str.maketrans('', '', string.digits))
 
     # make lower case
-    cleaned.lower()
+    lower_cleaned = cleaned.lower()
 
-    return cleaned
+    return lower_cleaned
 
 
 def tokenize(clean_content):  # content is a string
@@ -36,18 +40,19 @@ def tokenize(clean_content):  # content is a string
     tokens = word_tokenize(clean_content)
 
     # remove stopwords
-    remove_sw = [w for w in tokens if w not in stopwords.words()]
-
+    remove_sw = [w for w in tokens if not w in stopwords.words()]
+    print(remove_sw)
     return remove_sw
 
 
-def create_tokens(txt): # input is dataframe
-    tokens = [tokenize(clean(t)) for t in txt['Content Cleaned']]
+def create_tokens(txt):  # input is dataframe
+    clean_content = [clean(t) for t in txt['Content Cleaned']]
+    tokens = [tokenize(t) for t in clean_content]
     txt['Tokens'] = tokens
     return txt
 
 
-data = pd.read_csv('./data/data0annotated.csv', header=0, sep=',')
+data = pd.read_csv('/Users/suziewelby/year3/compsci/project/src/data/data0annotated.csv', header=0, sep=',')
 with_tokens = create_tokens(data)
-with_tokens.to_csv('./data/data0tokens.csv')
+with_tokens.to_csv('/Users/suziewelby/year3/compsci/project/src/data/data0tokens.csv')
 
