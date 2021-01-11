@@ -42,14 +42,14 @@ def trim(txt, i, j):
     return txt.loc[i:j]
 
 
-def removeLinks(content):
+def remove_links(content):
     links = "(http\S*)|(\S*.com\S*)|(\S*.net\S*)"
     cleaned = re.sub(links, "", content)
     return cleaned
 
 
-def prepareExtreme(txt):
-    removedLinks =[removeLinks(c) for c in txt['content']]
+def prepare_extreme(txt):
+    removedLinks =[remove_links(c) for c in txt['content']]
     txt['Cleaned Content'] = removedLinks
 
     default = [0] * len(txt['content'])
@@ -60,7 +60,7 @@ def prepareExtreme(txt):
     return txt
 
 
-extreme = prepareExtreme(contentDF)
+extreme = prepare_extreme(contentDF)
 extreme.to_csv('./data/extremecleaned.csv')
 #content = prepare(contentDF)
 #content.to_csv('./data/datsetcleaned.csv')
