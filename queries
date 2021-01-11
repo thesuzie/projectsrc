@@ -54,6 +54,15 @@ select "IdPost", "Content" from "Post" where "Site"=0 and "Content" ~*'(woman|wo
 -- ladies gave lots of posts like "hi ladies and gentlemen" etc and girl picked up girlfriend mentioned in random stories
 \copy (select "IdPost", "Content", "Thread" from "Post" where "Site"=0 and "Content" ~*'(woman|women|girl\s+|girls\s+|female|lady)' and char_length("Content") < 3000 limit 10000) TO '~/rawdataset.csv' WITH CSV HEADER;
 
+-- for extremebb
 
+-- initial extratraction to look at posts from incel forums
+\copy (select * from posts where site_id = 2 or site_id=5 and char_length(content) < 3000 limit 200) to '~/extreme/exploreetrembb.csv' with CSV HEADER;
+
+-- test keyword targeted extraction for annotations
+\copy (select * from posts where (site_id = 2 or site_id=5) and content ~*'(woman|women|girl\s+|girls\s+|female|lady|foid|femoid)' and char_length(content) < 3000 limit 200) to '~/extreme/firstkeywords.csv' with CSV HEADER;
+
+-- proper attempt
+\copy (select id, thread_id, content from posts where site_id = 2  and content ~*'(woman|women|girl\s+|girls\s+|female|lady|foid|femoid)' and char_length(content) < 3000 limit 5000) to '~/extreme/extremedatasetraw.csv' with CSV HEADER;
 
 
