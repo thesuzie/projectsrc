@@ -47,7 +47,7 @@ def custom_tokenize(content):  # content is a string
     cleaned = re.sub(usrnm, "", cleaned)
 
     # remove unneeded indicator words that have been added
-    ignore = "(Start contract)|(Code [.*])|(Spoiler \(Click to view\()"
+    ignore = "(Start contract)|(Code [.*])|(Spoiler \(Click to View\))"
     cleaned = re.sub(ignore, "", cleaned)
 
     # remove punctuation and numbers
