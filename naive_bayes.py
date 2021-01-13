@@ -1,18 +1,25 @@
 import re
 import string
+import seaborn as sns
+import matplotlib.pyplot as plt
 import nltk
+import sklearn
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
+import sys
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import confusion_matrix, accuracy_score
 
 
 
 # TODO:
-# encoding
-
-# need to have just one main function that takes in the dataframe and returns it encoded
-# could do one main for tokenisation and cleaning and then each new one for different encodings
+# split into different sets
+# naive bayes implementation
+# evaluation functions and graphs/confusion matrices
 
 
 def clean(content):  # content is a string
@@ -61,7 +68,6 @@ def custom_tokenize(content):  # content is a string
 
     # remove stopwords
     remove_sw = [w for w in tokens if not w in stopwords.words()]
-    print(remove_sw)
 
     return remove_sw
 
@@ -73,6 +79,7 @@ def create_tokens(txt):  # input is dataframe
     txt['Tokens'] = tokens
     return txt
 
+
 def tfidf_encode(txt):
     vectorizer = TfidfVectorizer(tokenizer=custom_tokenize)
     tfidf = vectorizer.fit_transform(txt['Content Cleaned'])
@@ -80,12 +87,53 @@ def tfidf_encode(txt):
     return tfidf
 
 
-data = pd.read_csv('/Users/suziewelby/year3/compsci/project/src/data/data0annotated.csv', header=0, sep=',')
-#with_tokens = create_tokens(data)
-vectorizer = TfidfVectorizer(tokenizer=custom_tokenize)
-tfidf = vectorizer.fit_transform(data['Content Cleaned'][0:10])
+def main():
 
-df = pd.DataFrame(tfidf.toarray(), columns=vectorizer.get_feature_names())
-print(df)
+    try:
+        file = sys.argv[1]
+    except IndexError:
+        raise SystemExit(f"Usage: {sys.argv[0]} <data_file>")
 
-#with_tokens.to_csv('/Users/suziewelby/year3/compsci/project/src/data/data0tokens.csv')
+    data = pd.read_csv(file, header=0, sep=',')
+
+    vectorizer = TfidfVectorizer(tokenizer=custom_tokenize)
+
+    tfidf = vectorizer.fit_transform(data['Content Cleaned'][0:100])
+
+    df = pd.DataFrame(tfidf.toarray(), columns=vectorizer.get_feature_names())
+    #print(df)
+
+    context_categories  = np.unique(data['Label'][0:100])
+    #print(context_categories)
+
+    # splitting into testing a training for now!
+    # todo: also make validation set
+    # todo: make my own function for this - or look into options more to have stratified sampling
+    x_train, x_test, y_train, y_test = train_test_split(tfidf.toarray(), data['Label'][0:100])
+    #print(f"x_train: {x_train}")
+    #print(f"x_test: {x_test}")
+
+    #print(f"y_test: {y_train}")
+
+    # Building the model
+    classifier = MultinomialNB()
+    classifier.fit(x_train, y_train)
+
+    # Predictions on test set
+    pred = classifier.predict(x_test)
+
+    print(confusion_matrix(y_test, pred))
+    # need to use better metrics
+    print(accuracy_score(y_test, pred))
+
+    mat = confusion_matrix(y_test, pred)
+    sns.heatmap(mat.T, square=True, annot=True, fmt="d", xticklabels=context_categories,
+                yticklabels=context_categories)
+    plt.xlabel("true labels")
+    plt.ylabel("predicted label")
+    plt.show()
+    print("The accuracy is {}".format(accuracy_score(y_test, pred)))
+
+
+if __name__ == "__main__":
+    main()
