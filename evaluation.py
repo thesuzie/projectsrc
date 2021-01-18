@@ -3,6 +3,10 @@ from sklearn.metrics import cohen_kappa_score
 import numpy as np
 
 
+# todo: create classifier evaluation function that prints out all needed values
+
+
+# this should be in a different file - not really relevant here
 def combine_annotations(file1, file2):
     # INPUT: file1, file2 dataframes
     # OUTPUT: new dataframe with labels from file 2 in label1 sent1 columns and final columns
