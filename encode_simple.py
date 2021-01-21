@@ -6,7 +6,11 @@ from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 
+## ENCODING FUNCTIONS FOR BASELINE CLASSIFIERS ##
+
+
 def custom_tokenize(content):
+    print("making tokens..")
     # content is a string
 
     # remove links
@@ -56,6 +60,10 @@ def tfidf_encode(txt):
 
     return tfidf
 
+
+## ENCODING FUNCTIONS FOR NEURAL NETWORK ##
+
+
 def nn_tokenize(content):
     # content is a string
 
@@ -81,11 +89,11 @@ def nn_tokenize(content):
     tokens = word_tokenize(clean_content)
 
     # lemmatize - can try with and without this
-    #lemmatizer = WordNetLemmatizer()
-    #lemmas = [lemmatizer.lemmatize(t) for t in tokens]
+    # lemmatizer = WordNetLemmatizer()
+    # lemmas = [lemmatizer.lemmatize(t) for t in tokens]
 
     # remove stopwords
-    #remove_sw = [w for w in lemmas if not w in stopwords.words()]
+    # remove_sw = [w for w in lemmas if not w in stopwords.words()]
 
     return tokens
 
@@ -110,6 +118,7 @@ def token_index(tok, vocab):
             ind = oov
     return ind
 
+
 def indices(content, vocab):
     tokens = nn_tokenize(content)
     tokinds = [token_index(t, vocab) for t in tokens]
@@ -117,15 +126,7 @@ def indices(content, vocab):
 
 
 def nn_encode(train, test):
-
     vocab = create_token_vocab(train)
     train["Token_indices"] = [indices(content, vocab) for content in train["Content"]]
 
     test["Token_indices"] = [indices(content, vocab) for content in test["Content"]]
-
-
-
-
-
-
-
