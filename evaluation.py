@@ -27,36 +27,6 @@ def evaluate_classifier(y, preds):
     return None
 
 
-# this should be in a different file - not really relevant here
-def combine_annotations(file1, file2):
-    # INPUT: file1, file2 dataframes
-    # OUTPUT: new dataframe with labels from file 2 in label1 sent1 columns and final columns
-    combined = file1
-    combined['Label 1'] = file2['Label']
-    combined['Sentiment 1'] = file2['Sentiment']
-
-    final_l = [0] * len(file1['Label'])
-    final_s = [0] * len(file1['Label'])
-    i = 0
-    while i < len(file1['Label']):
-        if combined['Label'][i] == combined['Label 1'][i]:
-            final_l[i] = combined['Label'][i]
-        else:
-            final_l[i] = "X"
-
-        if combined['Sentiment'][i] == combined['Sentiment 1'][i]:
-            final_s[i] = combined['Sentiment'][i]
-        else:
-            final_s[i] = "X"
-        i += 1
-
-    combined["Final Label"] = final_l
-
-    combined['Final Sentiment'] = final_s
-
-    return combined
-
-
 def count_labels(txt):
     # INPUT: dataframe with label column
     # OUTPUT: NONE, func prints answer
