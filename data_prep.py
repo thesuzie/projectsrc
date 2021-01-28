@@ -123,8 +123,10 @@ def combine_annotations(file1, file2):
 
 df_complete = pd.read_csv('./data/FullAnnotatedData.csv')
 df_no0 = df_complete[df_complete.Label != 0]
+count_labels(df_complete)
 
 count_labels(df_no0)
+count_sent(df_no0)
 
 df_no0.to_csv('./data/reducedFullAnnotations.csv', index=False)
 
