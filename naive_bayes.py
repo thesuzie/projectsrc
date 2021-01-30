@@ -8,60 +8,31 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import make_pipeline
 
-from encode_simple import custom_tokenize
-
-
-# TODO:
-# split into different sets
+from encode_simple import custom_tokenize, tfidf_encode
+from evaluation import evaluate_classifier
 
 
 def main():
-    # need to update to make usage Usage: {sys.argv[0]} <train_file> <test_file>
     try:
-        file = sys.argv[1]
+        X_train = pd.read_csv(sys.argv[1], sep=',', header=0)
+        X_test = pd.read_csv(sys.argv[2], sep=',', header=0)
+        y_train = pd.read_csv(sys.argv[3], sep=',', header=0)
+        y_test = pd.read_csv(sys.argv[4], sep=',', header=0)
     except IndexError:
-        raise SystemExit(f"Usage: {sys.argv[0]} <data_file>")
+        raise SystemExit(f"Usage: {sys.argv[0]} <X_train> <X_test> <y_train> <y_test>")
 
-    data = pd.read_csv(file, header=0, sep=',')
-
-    # would make a call to the function for each of the training and test sets
-    vectorizer = TfidfVectorizer(tokenizer=custom_tokenize)
-
-    tfidf = vectorizer.fit_transform(data['Content Cleaned'][0:100])
-
-    # could move this into the tfidf function if want to print
-    df = pd.DataFrame(tfidf.toarray(), columns=vectorizer.get_feature_names())
-    # print(df)
-
-    context_categories = np.unique(data['Label'][0:100])
-    # print(context_categories)
-
-    # would have input as test train already so would not split here
-    x_train, x_test, y_train, y_test = train_test_split(tfidf.toarray(), data['Label'][0:100])
-    # print(f"x_train: {x_train}")
-    # print(f"x_test: {x_test}")
-
-    # print(f"y_test: {y_train}")
-
-    # Building the model
-    classifier = MultinomialNB()
-    classifier.fit(x_train, y_train)
+    model = make_pipeline(TfidfVectorizer(tokenizer=custom_tokenize), MultinomialNB())
+    model.fit(X_train["Content Cleaned"], y_train["Label"])
 
     # Predictions on test set
-    pred = classifier.predict(x_test)
+    pred = model.predict(X_test["Content Cleaned"])
+    np.savetxt('./output/y_imbalanced_NB_propertokens.csv', pred, delimiter=',')
 
-    print(confusion_matrix(y_test, pred))
-    # need to use better metrics
-    print(accuracy_score(y_test, pred))
+    evaluate_classifier(y_test["Label"], pred, "./output/Imbalanced_NB_propertokens.png")
 
-    mat = confusion_matrix(y_test, pred)
-    sns.heatmap(mat.T, square=True, annot=True, fmt="d", xticklabels=context_categories,
-                yticklabels=context_categories)
-    plt.xlabel("true labels")
-    plt.ylabel("predicted label")
-    plt.show()
-    print("The accuracy is {}".format(accuracy_score(y_test, pred)))
+    return None
 
 
 if __name__ == "__main__":

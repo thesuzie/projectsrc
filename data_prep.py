@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import re
 from evaluation import count_sent, count_labels
+from sklearn.model_selection import train_test_split
 
 
 # names=['IdPost','Author','Thread','Timestamp','Content','AuthorNumPosts','AuthorReputation','LastParse','parsed','Site','CitedPost','AuthorName','Likes'])
@@ -121,12 +122,33 @@ def combine_annotations(file1, file2):
 # count_sent(df_complete)
 # df_complete.to_csv('./data/FullAnnotatedData.csv', index=False)
 
-df_complete = pd.read_csv('./data/FullAnnotatedData.csv')
-df_no0 = df_complete[df_complete.Label != 0]
-count_labels(df_complete)
+#df_complete = pd.read_csv('./data/FullAnnotatedData.csv')
+#df_no0 = df_complete[df_complete.Label != 0]
+# count_labels(df_complete)
+#
+# count_labels(df_no0)
+# count_sent(df_no0)
+#
+# df_no0.to_csv('./data/reducedFullAnnotations.csv', index=False)
+#
 
-count_labels(df_no0)
-count_sent(df_no0)
+data = pd.read_csv('./data/reducedFullAnnotations.csv')
 
-df_no0.to_csv('./data/reducedFullAnnotations.csv', index=False)
+X_train, X_test, y_train, y_test = train_test_split(data["Content Cleaned"], data["Label"],
+                                                    random_state=42,
+                                                    stratify=data["Label"],
+                                                    test_size=0.2)
 
+X_train.to_csv("./test_train/X_train_Imbalanced.csv", header=True)
+X_test.to_csv("./test_train/X_test_Imbalanced.csv",header=True)
+
+y_train.to_csv("./test_train/y_train_Imbalanced.csv", header=True)
+y_test.to_csv("./test_train/y_test_Imbalanced.csv", header=True)
+
+print("y_train")
+(unique, counts) = np.unique(y_train, return_counts=True)
+print(np.asarray((unique, counts)).T)
+
+print("y_test")
+(unique, counts) = np.unique(y_test, return_counts=True)
+print(np.asarray((unique, counts)).T)

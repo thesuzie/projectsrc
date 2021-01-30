@@ -10,7 +10,6 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 
 
 def custom_tokenize(content):
-    print("making tokens..")
     # content is a string
 
     # remove links
@@ -56,7 +55,10 @@ def tfidf_encode(txt):
     # INPUT: txt is a dataframe
     # OUTPUT: tfidf object
     vectorizer = TfidfVectorizer(tokenizer=custom_tokenize)
-    tfidf = vectorizer.fit_transform(txt['Content Cleaned'])
+    tfidf = vectorizer.fit_transform(txt["Content Cleaned"])
+
+    df = pd.DataFrame(tfidf.toarray(), columns=vectorizer.get_feature_names())
+    # print(df)
 
     return tfidf
 

@@ -1,3 +1,5 @@
+from sklearn.pipeline import make_pipeline
+
 from encode_simple import custom_tokenize, tfidf_encode
 import sys
 
@@ -14,44 +16,23 @@ from evaluation import evaluate_classifier
 
 
 def main():
-
-    """
     try:
-        train_file = sys.argv[1]
-        test_file = sys.argv[2]
+        X_train = pd.read_csv(sys.argv[1], sep=',', header=0)
+        X_test = pd.read_csv(sys.argv[2], sep=',', header=0)
+        y_train = pd.read_csv(sys.argv[3], sep=',', header=0)
+        y_test = pd.read_csv(sys.argv[4], sep=',', header=0)
     except IndexError:
-        raise SystemExit(f"Usage: {sys.argv[0]} <train_file> <test_file>")
-    """
-    train_file = "/Users/suziewelby/year3/compsci/project/src/data/data0annotated.csv"
-    test_file = "/Users/suziewelby/year3/compsci/project/src/data/data0annotated.csv"
-
-    train = pd.read_csv(train_file, header=0, sep=',')
-    encode_train = tfidf_encode(train[0:70])
-
-    test = pd.read_csv(test_file,header=0, sep=',')
-    encode_test = tfidf_encode(test[70:100])
-
-    context_categories = [1,2,3,4,5,6,7,8,9]
-    # print(context_categories)
-
-    x_train = encode_train.toarray()[0:70]
-    y_train = train['Label'][0:70]
-
-    x_test = encode_test.toarray()[70:100]
-    y_test = test['Label'][70:100]
-
-    # print(f"x_train: {x_train}")
-    # print(f"x_test: {x_test}")
-    # print(f"y_test: {y_train}")
+        raise SystemExit(f"Usage: {sys.argv[0]} <X_train> <X_test> <y_train> <y_test>")
 
     # Building the model
-    classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg').fit(x_train, y_train)
-    print("classifier made")
-    # Predictions on test set
-    preds = classifier.predict(x_test)
 
-    evaluate_classifier(y_test, preds)
+    model = make_pipeline(TfidfVectorizer(tokenizer=custom_tokenize), LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg'))
+    model.fit(X_train["Content Cleaned"], y_train["Label"])
+    pred = model.predict(X_test["Content Cleaned"])
 
+    np.savetxt('./output/y_imbalanced_LogReg_propertokens.csv', pred, delimiter=',')
+
+    evaluate_classifier(y_test["Label"], pred, "./output/Imbalanced_LogReg_propertokens.png")
 
 
 if __name__ == "__main__":

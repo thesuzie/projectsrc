@@ -1,28 +1,21 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
-from sklearn.metrics import cohen_kappa_score
 import numpy as np
-from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import confusion_matrix, classification_report
 
 
-def evaluate_classifier(y, preds):
-    context_categories = ["Sex", "Relationships", "eWhoring", "Online Crime and Harassment", "Descriptions",
-                          "Real World Abuse", "Skills in Tech", "Politics and Ideology", "Story"]
+def evaluate_classifier(y, preds, file):
+    context_categories = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    print(confusion_matrix(y, preds))
+    print(classification_report(y,preds, context_categories))
 
     mat = confusion_matrix(y, preds)
     sns.heatmap(mat.T, square=True, annot=True, fmt="d", xticklabels=context_categories,
                 yticklabels=context_categories)
     plt.xlabel("True labels")
     plt.ylabel("Predicted label")
-    plt.show()
-
-    print("The accuracy is {}".format(accuracy_score(y, preds)))
-    print("The precision is {}".format(precision_score(y, preds)))
-    print("The recall is {}".format(recall_score(y, preds)))
-    print("The F-1 is {}".format(f1_score(y, preds)))
+    plt.savefig(file)
 
     return None
 
