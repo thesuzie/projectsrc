@@ -207,22 +207,27 @@ def combine_annotations(file1, file2):
 # test.to_csv("./test_train/X_test_IM_clean.csv", header=True)
 # train.to_csv("./test_train/X_train_IM_clean.csv", header=True)
 
-test_x = pd.read_csv("./test_train/X_test_IM_clean.csv")
-test_y = pd.read_csv("./test_train/y_test_Imbalanced.csv")
+# test_x = pd.read_csv("./test_train/X_test_IM_clean.csv")
+# test_y = pd.read_csv("./test_train/y_test_Imbalanced.csv")
+#
+# ys = test_y["Label"]
+#
+# test_x["Label"] = ys
+#
+# test_x.to_csv("./test_train/test_IM.csv", header=True, index=False)
+#
+#
+#
+# train_x = pd.read_csv("./test_train/X_train_IM_clean.csv")
+# train_y = pd.read_csv("./test_train/y_train_Imbalanced.csv")
+# ys2 = train_y["Label"]
+#
+# train_x["Label"] = ys2
+#
+# train_x.to_csv("./test_train/train_IM.csv", header=True, index=False)
 
-ys = test_y["Label"]
-
-test_x["Label"] = ys
-
-test_x.to_csv("./test_train/test_IM.csv", header=True, index=False)
-
-
-
-train_x = pd.read_csv("./test_train/X_train_IM_clean.csv")
-train_y = pd.read_csv("./test_train/y_train_Imbalanced.csv")
-ys2 = train_y["Label"]
-
-train_x["Label"] = ys2
-
-train_x.to_csv("./test_train/train_IM.csv", header=True, index=False)
+encode = "test"
+ant = ""
+file = f"./test_train/{encode}_NB_{ant}.csv"
+print(file)
 

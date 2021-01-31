@@ -33,10 +33,10 @@ def main():
         encode = sys.argv[1]
         train = pd.read_csv(sys.argv[2], sep=',', header=0)
         test = pd.read_csv(sys.argv[3], sep=',', header=0)
-        outname = sys.argv[4]
+        balance = sys.argv[4]
 
     except IndexError:
-        raise SystemExit(f"Usage: {sys.argv[0]} <encoding_method> <train_file> <test_file> <output filename> ")
+        raise SystemExit(f"Usage: {sys.argv[0]} <encoding_method> <train_file> <test_file> <balance> ")
 
     if encode == "tfidf":
         classifier = tfidf_model(train)
@@ -45,9 +45,9 @@ def main():
 
     # Predictions on test set
     pred = classifier.predict(test["Content Cleaned"])
-    np.savetxt(f'./output/y_NB_{encode}.csv', pred, delimiter=',')
+    np.savetxt(f'./output/y_NB_{encode}_{balance}.csv', pred, delimiter=',')
 
-    evaluate_classifier(test["Label"], pred, f"./output/{outname}_NB_{encode}.png")
+    evaluate_classifier(test["Label"], pred, f"./output/NB_{encode}_{balance}.png")
 
     return None
 
