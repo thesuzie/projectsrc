@@ -4,33 +4,50 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics import confusion_matrix, accuracy_score
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
+from nltk.corpus import stopwords
 
 from encode_simple import custom_tokenize, tfidf_encode
 from evaluation import evaluate_classifier
 
+def tfidf_model(train):
+    model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')), MultinomialNB())
+    model.fit(train["Content Cleaned"], train["Label"])
+
+    return model
+
+
+def count_model(train):
+    model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')), MultinomialNB())
+    model.fit(train["Content Cleaned"], train["Label"])
+
+    return model
+
 
 def main():
     try:
-        X_train = pd.read_csv(sys.argv[1], sep=',', header=0)
-        X_test = pd.read_csv(sys.argv[2], sep=',', header=0)
-        y_train = pd.read_csv(sys.argv[3], sep=',', header=0)
-        y_test = pd.read_csv(sys.argv[4], sep=',', header=0)
-    except IndexError:
-        raise SystemExit(f"Usage: {sys.argv[0]} <X_train> <X_test> <y_train> <y_test>")
+        encode = sys.argv[1]
+        train = pd.read_csv(sys.argv[2], sep=',', header=0)
+        test = pd.read_csv(sys.argv[3], sep=',', header=0)
+        outname = sys.argv[4]
 
-    model = make_pipeline(TfidfVectorizer(tokenizer=custom_tokenize), MultinomialNB())
-    model.fit(X_train["Content Cleaned"], y_train["Label"])
+    except IndexError:
+        raise SystemExit(f"Usage: {sys.argv[0]} <encoding_method> <train_file> <test_file> <output filename> ")
+
+    if encode == "tfidf":
+        classifier = tfidf_model(train)
+    else: # encode == "count":
+        classifier = count_model(train)
 
     # Predictions on test set
-    pred = model.predict(X_test["Content Cleaned"])
-    np.savetxt('./output/y_imbalanced_NB_propertokens.csv', pred, delimiter=',')
+    pred = classifier.predict(test["Content Cleaned"])
+    np.savetxt(f'./output/y_NB_{encode}.csv', pred, delimiter=',')
 
-    evaluate_classifier(y_test["Label"], pred, "./output/Imbalanced_NB_propertokens.png")
+    evaluate_classifier(test["Label"], pred, f"./output/{outname}_NB_{encode}.png")
 
     return None
 

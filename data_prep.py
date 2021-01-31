@@ -58,6 +58,28 @@ def prepare_extreme(txt):
     return txt
 
 
+def secondary_cleaning(content):
+    # after further exploratory analysis have decided to remove certain phrases
+
+    links = "(http\S*)|(\S*\.co\S*)|(\S*\.net\S*)"
+    cleaned = re.sub(links, "", content)
+
+    # remove usernames and emails (strings containing @)
+    usrnm = "\S*@\S*"
+    cleaned = re.sub(usrnm, "", cleaned)
+
+    # remove unneeded indicator words that have been added
+    ignore = "(Start contract)|(Code \[.*\])|(Spoiler \(Click to View\))"
+    cleaned = re.sub(ignore, "", cleaned)
+
+    # remove punctuation and numbers
+    cleaned = re.sub('[^a-zA-Z]+', " ", cleaned)
+
+    # make lower case
+    clean_content = cleaned.lower()
+
+    return clean_content
+
 # extreme = prepare_extreme(contentDF)
 # extreme.to_csv('./data/extremecleaned.csv')
 # content = prepare(contentDF)
@@ -132,23 +154,75 @@ def combine_annotations(file1, file2):
 # df_no0.to_csv('./data/reducedFullAnnotations.csv', index=False)
 #
 
-data = pd.read_csv('./data/reducedFullAnnotations.csv')
+# data = pd.read_csv('./data/reducedFullAnnotations.csv')
+#
+# X_train, X_test, y_train, y_test = train_test_split(data["Content Cleaned"], data["Label"],
+#                                                     random_state=42,
+#                                                     stratify=data["Label"],
+#                                                     test_size=0.2)
+#
+# X_train.to_csv("./test_train/X_train_Imbalanced.csv", header=True)
+# X_test.to_csv("./test_train/X_test_Imbalanced.csv",header=True)
+#
+# y_train.to_csv("./test_train/y_train_Imbalanced.csv", header=True)
+# y_test.to_csv("./test_train/y_test_Imbalanced.csv", header=True)
+#
+# print("y_train")
+# (unique, counts) = np.unique(y_train, return_counts=True)
+# print(np.asarray((unique, counts)).T)
+#
+# print("y_test")
+# (unique, counts) = np.unique(y_test, return_counts=True)
+# print(np.asarray((unique,# data = pd.read_csv('./data/reducedFullAnnotations.csv')
+# #
+# # X_train, X_test, y_train, y_test = train_test_split(data["Content Cleaned"], data["Label"],
+# #                                                     random_state=42,
+# #                                                     stratify=data["Label"],
+# #                                                     test_size=0.2)
+# #
+# # X_train.to_csv("./test_train/X_train_Imbalanced.csv", header=True)
+# # X_test.to_csv("./test_train/X_test_Imbalanced.csv",header=True)
+# #
+# # y_train.to_csv("./test_train/y_train_Imbalanced.csv", header=True)
+# # y_test.to_csv("./test_train/y_test_Imbalanced.csv", header=True)
+# #
+# # print("y_train")
+# # (unique, counts) = np.unique(y_train, return_counts=True)
+# # print(np.asarray((unique, counts)).T)
+# #
+# # print("y_test")
+# # (unique, counts) = np.unique(y_test, return_counts=True)
+# # print(np.asarray((unique, counts)).T) counts)).T)
 
-X_train, X_test, y_train, y_test = train_test_split(data["Content Cleaned"], data["Label"],
-                                                    random_state=42,
-                                                    stratify=data["Label"],
-                                                    test_size=0.2)
+# train = pd.read_csv("./test_train/X_train_Imbalanced.csv")
+#
+# test = pd.read_csv("./test_train/X_test_Imbalanced.csv")
+#
+# clean_test_content = [secondary_cleaning(c) for c in test["Content Cleaned"]]
+# clean_train_content = [secondary_cleaning(c) for c in train["Content Cleaned"]]
+#
+# test["Content Cleaned"] = clean_test_content
+# train["Content Cleaned"] = clean_train_content
+#
+# test.to_csv("./test_train/X_test_IM_clean.csv", header=True)
+# train.to_csv("./test_train/X_train_IM_clean.csv", header=True)
 
-X_train.to_csv("./test_train/X_train_Imbalanced.csv", header=True)
-X_test.to_csv("./test_train/X_test_Imbalanced.csv",header=True)
+test_x = pd.read_csv("./test_train/X_test_IM_clean.csv")
+test_y = pd.read_csv("./test_train/y_test_Imbalanced.csv")
 
-y_train.to_csv("./test_train/y_train_Imbalanced.csv", header=True)
-y_test.to_csv("./test_train/y_test_Imbalanced.csv", header=True)
+ys = test_y["Label"]
 
-print("y_train")
-(unique, counts) = np.unique(y_train, return_counts=True)
-print(np.asarray((unique, counts)).T)
+test_x["Label"] = ys
 
-print("y_test")
-(unique, counts) = np.unique(y_test, return_counts=True)
-print(np.asarray((unique, counts)).T)
+test_x.to_csv("./test_train/test_IM.csv", header=True, index=False)
+
+
+
+train_x = pd.read_csv("./test_train/X_train_IM_clean.csv")
+train_y = pd.read_csv("./test_train/y_train_Imbalanced.csv")
+ys2 = train_y["Label"]
+
+train_x["Label"] = ys2
+
+train_x.to_csv("./test_train/train_IM.csv", header=True, index=False)
+

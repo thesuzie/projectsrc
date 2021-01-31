@@ -12,33 +12,15 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 def custom_tokenize(content):
     # content is a string
 
-    # remove links
-    links = "(http\S*)|(\S*\.co\S*)|(\S*\.net\S*)"
-    cleaned = re.sub(links, "", content)
-
-    # remove usernames and emails (strings containing @)
-    usrnm = "\S*@\S*"
-    cleaned = re.sub(usrnm, "", cleaned)
-
-    # remove unneeded indicator words that have been added
-    ignore = "(Start contract)|(Code \[.*\])|(Spoiler \(Click to View\))"
-    cleaned = re.sub(ignore, "", cleaned)
-
-    # remove punctuation and numbers
-    cleaned = re.sub('[^a-zA-Z]+', " ", cleaned)
-
-    # make lower case
-    clean_content = cleaned.lower()
-
     # tokenize
-    tokens = word_tokenize(clean_content)
+    tokens = content.split()
 
     # lemmatize - can try with and without this
-    lemmatizer = WordNetLemmatizer()
-    lemmas = [lemmatizer.lemmatize(t) for t in tokens]
+    ##lemmatizer = WordNetLemmatizer()
+    #lemmas = [lemmatizer.lemmatize(t) for t in tokens]
 
     # remove stopwords
-    remove_sw = [w for w in lemmas if not w in stopwords.words()]
+    remove_sw = [w for w in tokens if not w in stopwords.words()]
 
     return remove_sw
 
