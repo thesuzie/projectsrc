@@ -7,13 +7,29 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics import confusion_matrix, accuracy_score
 
 
 from sklearn.linear_model import LogisticRegression
 from evaluation import evaluate_classifier
 
+
+def tfidf_model(train):
+    model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')),
+                          LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
+                                             solver='newton-cg'))
+    model.fit(train["Content Cleaned"], train["Label"])
+    return model
+
+
+def count_model(train):
+    model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')),
+                          LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
+                                             solver='newton-cg'))
+    model.fit(train["Content Cleaned"], train["Label"])
+
+    return model
 
 def main():
     try:
@@ -23,18 +39,24 @@ def main():
         balance = sys.argv[4]
 
     except IndexError:
-        raise SystemExit(f"Usage: {sys.argv[0]} <encoding_method> <train_file> <test_file> ")
+        raise SystemExit(f"Usage: {sys.argv[0]} <encoding_method> <train_file> <test_file> <balance>")
 
     # Building the model
 
-    model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')), LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg'))
-    model.fit(train["Content Cleaned"], train["Label"])
-    pred = model.predict(test["Content Cleaned"])
+    if encode == "tfidf":
+        classifier = tfidf_model(train)
+    else:
+        classifier = count_model(train)
+
+
+    # make predictions
+    pred = classifier.predict(test["Content Cleaned"])
 
     np.savetxt(f'./output/y_LogReg_{encode}_{balance}.csv', pred, delimiter=',')
 
     evaluate_classifier(test["Label"], pred, f"./output/LogReg_{encode}_{balance}.png")
 
+    return None
 
 if __name__ == "__main__":
     main()
