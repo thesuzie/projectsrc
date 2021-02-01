@@ -15,21 +15,37 @@ from sklearn.linear_model import LogisticRegression
 from evaluation import evaluate_classifier
 
 
-def tfidf_model(train):
-    model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')),
+def tfidf_model(train, balance=None):
+
+    if balance == "class_weight":
+        print(balance)
+        model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')),
+                              LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
+                                                 solver='newton-cg', class_weight='balanced'))
+        model.fit(train["Content Cleaned"], train["Label"])
+    else:
+        model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')),
                           LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
                                              solver='newton-cg'))
-    model.fit(train["Content Cleaned"], train["Label"])
+        model.fit(train["Content Cleaned"], train["Label"])
     return model
 
 
-def count_model(train):
-    model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')),
+def count_model(train, balance=None):
+    if balance == "class_weight":
+        print(balance)
+        model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')),
+                              LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
+                                                 solver='newton-cg', class_weight='balanced'))
+        model.fit(train["Content Cleaned"], train["Label"])
+    else:
+        model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')),
                           LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
                                              solver='newton-cg'))
-    model.fit(train["Content Cleaned"], train["Label"])
+        model.fit(train["Content Cleaned"], train["Label"])
 
     return model
+
 
 def main():
     try:
@@ -44,9 +60,9 @@ def main():
     # Building the model
 
     if encode == "tfidf":
-        classifier = tfidf_model(train)
+        classifier = tfidf_model(train, balance)
     else:
-        classifier = count_model(train)
+        classifier = count_model(train, balance)
 
 
     # make predictions

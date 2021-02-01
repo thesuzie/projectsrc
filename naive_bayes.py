@@ -14,16 +14,27 @@ from nltk.corpus import stopwords
 from encode_simple import custom_tokenize, tfidf_encode
 from evaluation import evaluate_classifier
 
-def tfidf_model(train):
-    model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')), MultinomialNB())
-    model.fit(train["Content Cleaned"], train["Label"])
+
+def tfidf_model(train, balance):
+    if balance == "class_weight":
+        model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')), MultinomialNB(fit_prior=False))
+        model.fit(train["Content Cleaned"], train["Label"])
+
+    else:
+
+        model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')), MultinomialNB())
+        model.fit(train["Content Cleaned"], train["Label"])
 
     return model
 
 
-def count_model(train):
-    model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')), MultinomialNB())
-    model.fit(train["Content Cleaned"], train["Label"])
+def count_model(train, balance):
+    if balance == "class_weight":
+        model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')), MultinomialNB(fit_prior=False))
+        model.fit(train["Content Cleaned"], train["Label"])
+    else:
+        model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')), MultinomialNB())
+        model.fit(train["Content Cleaned"], train["Label"])
 
     return model
 
@@ -39,9 +50,9 @@ def main():
         raise SystemExit(f"Usage: {sys.argv[0]} <encoding_method> <train_file> <test_file> <balance> ")
 
     if encode == "tfidf":
-        classifier = tfidf_model(train)
+        classifier = tfidf_model(train, balance)
     else: # encode == "count":
-        classifier = count_model(train)
+        classifier = count_model(train, balance)
 
     # Predictions on test set
     pred = classifier.predict(test["Content Cleaned"])
