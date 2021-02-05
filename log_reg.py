@@ -6,6 +6,7 @@ from nltk.corpus import stopwords
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from imblearn.over_sampling import RandomOverSampler
 import seaborn as sns
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics import confusion_matrix, accuracy_score
@@ -60,13 +61,23 @@ def main():
     # Building the model
 
     if encode == "tfidf":
-        classifier = tfidf_model(train, balance)
+        vec = TfidfVectorizer(stop_words=stopwords.words('english'))
+        #classifier = tfidf_model(train, balance)
     else:
-        classifier = count_model(train, balance)
+        vec = CountVectorizer(stop_words=stopwords.words('english'))
+        #classifier = count_model(train, balance)
 
+    if balance == "class_weight":
+        model = make_pipeline(vec, LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg', class_weight='balanced'))
+    elif balance == "rand_ov_samp":
+        model = make_pipeline(vec, RandomOverSampler(random_state=0), LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg'))
+    else:
+        model = make_pipeline(vec, LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg'))
+
+    model.fit(train["Content Cleaned"], train["Label"])
 
     # make predictions
-    pred = classifier.predict(test["Content Cleaned"])
+    pred = model.predict(test["Content Cleaned"])
 
     np.savetxt(f'./output/y_LogReg_{encode}_{balance}.csv', pred, delimiter=',')
 
