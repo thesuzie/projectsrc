@@ -1,6 +1,6 @@
 from sklearn.pipeline import make_pipeline
 
-from encode_simple import custom_tokenize, tfidf_encode
+from encode_simple import custom_tokenize, tfidf_encode, count_encode
 import sys
 from nltk.corpus import stopwords
 import matplotlib.pyplot as plt
@@ -16,39 +16,8 @@ from sklearn.linear_model import LogisticRegression
 from evaluation import evaluate_classifier
 
 
-def tfidf_model(train, balance=None):
-
-    if balance == "class_weight":
-        print(balance)
-        model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')),
-                              LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
-                                                 solver='newton-cg', class_weight='balanced'))
-        model.fit(train["Content Cleaned"], train["Label"])
-    else:
-        model = make_pipeline(TfidfVectorizer(stop_words=stopwords.words('english')),
-                          LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
-                                             solver='newton-cg'))
-        model.fit(train["Content Cleaned"], train["Label"])
-    return model
-
-
-def count_model(train, balance=None):
-    if balance == "class_weight":
-        print(balance)
-        model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')),
-                              LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
-                                                 solver='newton-cg', class_weight='balanced'))
-        model.fit(train["Content Cleaned"], train["Label"])
-    else:
-        model = make_pipeline(CountVectorizer(stop_words=stopwords.words('english')),
-                          LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2',
-                                             solver='newton-cg'))
-        model.fit(train["Content Cleaned"], train["Label"])
-
-    return model
-
-
 def main():
+
     try:
         encode = sys.argv[1]
         train = pd.read_csv(sys.argv[2], sep=',', header=0)
@@ -59,31 +28,34 @@ def main():
         raise SystemExit(f"Usage: {sys.argv[0]} <encoding_method> <train_file> <test_file> <balance>")
 
     # Building the model
-
     if encode == "tfidf":
-        vec = TfidfVectorizer(stop_words=stopwords.words('english'))
-        #classifier = tfidf_model(train, balance)
+        vec = tfidf_encode(train)
     else:
-        vec = CountVectorizer(stop_words=stopwords.words('english'))
-        #classifier = count_model(train, balance)
+        vec = count_encode(train)
 
-    if balance == "class_weight":
-        model = make_pipeline(vec, LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg', class_weight='balanced'))
-    elif balance == "rand_ov_samp":
-        model = make_pipeline(vec, RandomOverSampler(random_state=0), LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg'))
-    else:
-        model = make_pipeline(vec, LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg'))
+    X_encoded = vec.transform(train["Content Cleaned"])
 
-    model.fit(train["Content Cleaned"], train["Label"])
+    if balance == "rand_ov_samp":
+        X, y = train = RandomOverSampler(random_state=0).fit_resample(X_encoded, train["Label"])
+        classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg')
 
-    # make predictions
-    pred = model.predict(test["Content Cleaned"])
+    else: # balance == "class_weight"
+        classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg', class_weight='balanced')
+        X = X_encoded
+        y = train["Label"]
+
+    classifier.fit(X, y)
+
+    X_test = vec.transform(test["Content Cleaned"])
+
+    pred = classifier.predict(X_test)
 
     np.savetxt(f'./output/y_LogReg_{encode}_{balance}.csv', pred, delimiter=',')
 
     evaluate_classifier(test["Label"], pred, f"./output/LogReg_{encode}_{balance}.png")
 
     return None
+
 
 if __name__ == "__main__":
     main()

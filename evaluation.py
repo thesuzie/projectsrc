@@ -8,7 +8,7 @@ from sklearn.metrics import confusion_matrix, classification_report
 def evaluate_classifier(y, preds, file):
     context_categories = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-    print(classification_report(y,preds, context_categories))
+    print(classification_report(y, preds, context_categories))
 
     mat = confusion_matrix(y, preds)
     sns.heatmap(mat.T, square=True, annot=True, fmt="d", xticklabels=context_categories,

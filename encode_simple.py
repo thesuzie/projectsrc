@@ -3,7 +3,7 @@ import pandas as pd
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 
 
 ## ENCODING FUNCTIONS FOR BASELINE CLASSIFIERS ##
@@ -37,12 +37,19 @@ def tfidf_encode(txt):
     # INPUT: txt is a dataframe
     # OUTPUT: tfidf object
     vectorizer = TfidfVectorizer(tokenizer=custom_tokenize)
-    tfidf = vectorizer.fit_transform(txt["Content Cleaned"])
+    tfidf = vectorizer.fit(txt["Content Cleaned"])
 
-    df = pd.DataFrame(tfidf.toarray(), columns=vectorizer.get_feature_names())
+    #df = pd.DataFrame(tfidf.toarray(), columns=vectorizer.get_feature_names())
     # print(df)
 
     return tfidf
+
+
+def count_encode(txt):
+    vectorizer = CountVectorizer(stop_words=stopwords.words('english'))
+    count = vectorizer.fit(txt["Content Cleaned"])
+
+    return count
 
 
 ## ENCODING FUNCTIONS FOR NEURAL NETWORK ##

