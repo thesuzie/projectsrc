@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
 from nltk.corpus import stopwords
-from imblearn.over_sampling import RandomOverSampler
+from imblearn.over_sampling import RandomOverSampler, SMOTE
 
 from encode_simple import custom_tokenize, tfidf_encode, count_encode
 from evaluation import evaluate_classifier
@@ -31,7 +31,11 @@ def main():
     X_encoded = vec.transform(train["Content Cleaned"])
 
     if balance == "rand_ov_samp":
-        X, y = train = RandomOverSampler(random_state=0).fit_resample(X_encoded, train["Label"])
+        X, y = RandomOverSampler(random_state=0).fit_resample(X_encoded, train["Label"])
+        classifier = MultinomialNB()
+
+    elif balance == "smote":
+        X, y = SMOTE().fit_resample(X_encoded, train["Label"])
         classifier = MultinomialNB()
 
     else:  # balance == "class_weight"

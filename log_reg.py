@@ -2,7 +2,7 @@ from encode_simple import tfidf_encode, count_encode
 import sys
 import numpy as np
 import pandas as pd
-from imblearn.over_sampling import RandomOverSampler
+from imblearn.over_sampling import RandomOverSampler, SMOTE
 
 from sklearn.linear_model import LogisticRegression
 from evaluation import evaluate_classifier
@@ -29,6 +29,10 @@ def main():
 
     if balance == "rand_ov_samp":
         X, y = RandomOverSampler(random_state=0).fit_resample(X_encoded, train["Label"])
+        classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg')
+
+    elif balance == "smote":
+        X, y = SMOTE().fit_resample(X_encoded, train["Label"])
         classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg')
 
     else: # balance == "class_weight"
