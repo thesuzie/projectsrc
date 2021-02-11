@@ -36,7 +36,7 @@ def create_tokens(txt):  # input is dataframe
 def tfidf_encode(txt):
     # INPUT: txt is a dataframe
     # OUTPUT: tfidf object
-    vectorizer = TfidfVectorizer(tokenizer=custom_tokenize)
+    vectorizer = TfidfVectorizer(stop_words=stopwords.words('english'))
     tfidf = vectorizer.fit(txt["Content Cleaned"])
 
     #df = pd.DataFrame(tfidf.toarray(), columns=vectorizer.get_feature_names())

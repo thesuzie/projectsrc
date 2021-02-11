@@ -1,16 +1,8 @@
-from sklearn.pipeline import make_pipeline
-
-from encode_simple import custom_tokenize, tfidf_encode, count_encode
+from encode_simple import tfidf_encode, count_encode
 import sys
-from nltk.corpus import stopwords
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from imblearn.over_sampling import RandomOverSampler
-import seaborn as sns
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.metrics import confusion_matrix, accuracy_score
-
 
 from sklearn.linear_model import LogisticRegression
 from evaluation import evaluate_classifier
@@ -36,7 +28,7 @@ def main():
     X_encoded = vec.transform(train["Content Cleaned"])
 
     if balance == "rand_ov_samp":
-        X, y = train = RandomOverSampler(random_state=0).fit_resample(X_encoded, train["Label"])
+        X, y = RandomOverSampler(random_state=0).fit_resample(X_encoded, train["Label"])
         classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg')
 
     else: # balance == "class_weight"
