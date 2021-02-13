@@ -7,7 +7,7 @@ from sklearn.pipeline import make_pipeline
 from nltk.corpus import stopwords
 from imblearn.over_sampling import RandomOverSampler, SMOTE
 
-from encode_simple import custom_tokenize, tfidf_encode, count_encode
+from encode import custom_tokenize, tfidf_encode, count_encode
 from evaluation import evaluate_classifier
 
 

@@ -1,4 +1,4 @@
-from encode_simple import tfidf_encode, count_encode
+from encode import tfidf_encode, count_encode, doc_2_vec, vector_for_learning, create_tagged_docs
 import sys
 import numpy as np
 import pandas as pd
@@ -20,20 +20,34 @@ def main():
         raise SystemExit(f"Usage: {sys.argv[0]} <encoding_method> <train_file> <test_file> <balance>")
 
     # Building the model
+
+    # encoding
     if encode == "tfidf":
         vec = tfidf_encode(train)
+        X_encoded = vec.transform(train["Content Cleaned"])
+        X_test = vec.transform(test["Content Cleaned"])
+
+    elif encode == "doc2vec":
+
+        X_encoded, X_test = doc_2_vec(train, test)
+        print("doc 2 vec done")
+
     else:
         vec = count_encode(train)
+        X_encoded = vec.transform(train["Content Cleaned"])
+        X_test = vec.transform(test["Content Cleaned"])
 
-    X_encoded = vec.transform(train["Content Cleaned"])
 
+    # balancing the data set
     if balance == "rand_ov_samp":
         X, y = RandomOverSampler(random_state=0).fit_resample(X_encoded, train["Label"])
         classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg')
 
     elif balance == "smote":
+        print("starting smote")
         X, y = SMOTE().fit_resample(X_encoded, train["Label"])
-        classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg')
+        print("finished smote")
+        classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='lbfgs')
 
     else: # balance == "class_weight"
         classifier = LogisticRegression(random_state=0, multi_class='multinomial', penalty='l2', solver='newton-cg', class_weight='balanced')
@@ -41,8 +55,9 @@ def main():
         y = train["Label"]
 
     classifier.fit(X, y)
+    print("classifier fit")
 
-    X_test = vec.transform(test["Content Cleaned"])
+
 
     pred = classifier.predict(X_test)
 
