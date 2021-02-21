@@ -11,6 +11,36 @@ from sklearn import utils
 
 ## ENCODING FUNCTIONS FOR BASELINE CLASSIFIERS ##
 
+def main():
+
+    encode = "count"
+
+    train = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/test_train/train_IM_no8.csv")
+    test = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/test_train/test_IM_no8.csv")
+
+    if encode == "tfidf":
+        vec = tfidf_encode(train)
+        X_encoded = vec.transform(train["Content Cleaned"])
+        X_test = vec.transform(test["Content Cleaned"])
+
+    elif encode == "doc2vec":
+
+        X_encoded, X_test = doc_2_vec(train, test)
+
+
+    else:
+        vec = count_encode(train)
+        X_encoded = vec.transform(train["Content Cleaned"])
+        X_test = vec.transform(test["Content Cleaned"])
+
+    train["Encoded"] = X_encoded
+    test["Encoded"] = X_test
+
+    train.to_csv(f"/Users/suziewelby/year3/compsci/project/src/test_train/{encode}_train_IM.csv")
+    test.to_csv(f"/Users/suziewelby/year3/compsci/project/src/test_train/{encode}_test_IM.csv")
+
+    return None
+
 
 def custom_tokenize(content):
     # content is a string
@@ -88,7 +118,7 @@ def doc_2_vec(train, test):
     test_documents = create_tagged_docs(test)
 
     try:
-        model_dbow = Doc2Vec.load("./trained.d2v")
+        model_dbow = Doc2Vec.load("/Users/suziewelby/year3/compsci/project/src/trained.d2v")
 
     except FileNotFoundError:
         cores = multiprocessing.cpu_count()
@@ -98,11 +128,11 @@ def doc_2_vec(train, test):
         model_dbow.build_vocab([x for x in tqdm(train_documents)])
         train_documents = utils.shuffle(train_documents)
         model_dbow.train(train_documents, total_examples=len(train_documents), epochs=30)
+        model_dbow.save("/Users/suziewelby/year3/compsci/project/src/trained.d2v")
 
     y, X_encoded = vector_for_learning(model_dbow,train_documents)
     y_test, X_test = vector_for_learning(model_dbow, test_documents)
 
-    model_dbow.save("./trained.d2v")
 
     return X_encoded, X_test
 
@@ -176,3 +206,6 @@ def nn_encode(train, test):
     train["Token_indices"] = [indices(content, vocab) for content in train["Content"]]
 
     test["Token_indices"] = [indices(content, vocab) for content in test["Content"]]
+
+if __name__ == "__main__":
+    main()

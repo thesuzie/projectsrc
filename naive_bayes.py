@@ -11,7 +11,6 @@ from encode import custom_tokenize, tfidf_encode, count_encode
 from evaluation import evaluate_classifier
 
 
-
 def main():
     try:
         encode = sys.argv[1]

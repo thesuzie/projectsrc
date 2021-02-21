@@ -22,20 +22,24 @@ def main():
     # Building the model
 
     # encoding
-    if encode == "tfidf":
-        vec = tfidf_encode(train)
-        X_encoded = vec.transform(train["Content Cleaned"])
-        X_test = vec.transform(test["Content Cleaned"])
+    # if encode == "tfidf":
+    #     vec = tfidf_encode(train)
+    #     X_encoded = vec.transform(train["Content Cleaned"])
+    #     X_test = vec.transform(test["Content Cleaned"])
+    #
+    # elif encode == "doc2vec":
+    #
+    #     X_encoded, X_test = doc_2_vec(train, test)
+    #     print("doc 2 vec done")
+    #
+    # else:
+    #     vec = count_encode(train)
+    #     X_encoded = vec.transform(train["Content Cleaned"])
+    #     X_test = vec.transform(test["Content Cleaned"])
 
-    elif encode == "doc2vec":
 
-        X_encoded, X_test = doc_2_vec(train, test)
-        print("doc 2 vec done")
-
-    else:
-        vec = count_encode(train)
-        X_encoded = vec.transform(train["Content Cleaned"])
-        X_test = vec.transform(test["Content Cleaned"])
+    X_encoded = train["Encoded"]
+    X_test = test["Encoded"]
 
 
     # balancing the data set
@@ -56,7 +60,6 @@ def main():
 
     classifier.fit(X, y)
     print("classifier fit")
-
 
 
     pred = classifier.predict(X_test)
