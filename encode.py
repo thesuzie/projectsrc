@@ -176,7 +176,7 @@ def nn_tokenize(content):
 
 def create_token_vocab(train):
     token_vocab = set()
-    for content in train["Content"]:
+    for content in train["Content Cleaned"]:
         for token in nn_tokenize(content):
             token_vocab.add(token)
 
@@ -196,16 +196,21 @@ def token_index(tok, vocab):
 
 
 def indices(content, vocab):
-    tokens = nn_tokenize(content)
-    tokinds = [token_index(t, vocab) for t in tokens]
-    return tokinds
+    tokens = word_tokenize(content)
+    stop_words = set(stopwords.words('english'))
+    filtered_sentence = [w for w in tokens if not w in stop_words]
+    tok_inds = [token_index(t, vocab) for t in filtered_sentence]
+    return tok_inds
 
 
 def nn_encode(train, test):
     vocab = create_token_vocab(train)
-    train["Token_indices"] = [indices(content, vocab) for content in train["Content"]]
+    train_inds = [indices(content, vocab) for content in train["Content Cleaned"]]
 
-    test["Token_indices"] = [indices(content, vocab) for content in test["Content"]]
+    test_inds = [indices(content, vocab) for content in test["Content Cleaned"]]
+
+    return train_inds, test_inds
+
 
 if __name__ == "__main__":
     main()
