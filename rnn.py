@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-from encode import nn_encode
+from encode import nn_encode, create_token_vocab
 from keras.preprocessing.sequence import pad_sequences
 
 
@@ -15,14 +15,18 @@ def plot_graphs(history, metric):
 
     return None
 
+def prep_indices():
+    train_dataset = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/test_train/train_IM_no8.csv")
+    test_dataset = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/test_train/test_IM_no8.csv")
 
-train_dataset = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/test_train/train_IM_no8.csv")
-test_dataset = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/test_train/test_IM_no8.csv")
+    train_inds, test_inds = nn_encode(train_dataset, test_dataset)
 
-train_inds, test_inds = nn_encode(train_dataset, test_dataset)
+    train_dataset["Token Indices"] = train_inds
+    test_dataset["Token Indices"] = test_inds
 
-train_inds.tofile("/Users/suziewelby/year3/compsci/project/src/test_train/rnn_train.csv", sep=",", format="%s")
-test_inds.tofile("/Users/suziewelby/year3/compsci/project/src/test_train/rnn_test.csv", sep=",", format="%s")
+    test_dataset.to_csv("/Users/suziewelby/year3/compsci/project/src/test_train/rnn_test.csv", index=True)
+    train_dataset.to_csv("/Users/suziewelby/year3/compsci/project/src/test_train/rnn_train.csv", index=True)
+
 
 
 def find_longest_sequence(inds, longest_seq):
@@ -34,8 +38,10 @@ def find_longest_sequence(inds, longest_seq):
     return longest_seq
 
 
-train_longest = find_longest_sequence(train_inds, 0)
-print('The longest sequence in the training set is %i tokens long' % train_longest)
-print(train_inds[0])
-
 seq_length = 273
+vocab_size = 11942
+
+
+train_dataset = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/test_train/rnn_train.csv")
+test_dataset = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/test_train/rnn_test.csv")
+

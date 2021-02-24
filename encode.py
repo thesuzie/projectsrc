@@ -181,6 +181,8 @@ def create_token_vocab(train):
             token_vocab.add(token)
 
     vocab = list(token_vocab)
+    size = len(vocab)
+    print(f"Size of Vocab: {size}")
     return vocab
 
 
