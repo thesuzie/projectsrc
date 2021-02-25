@@ -187,13 +187,13 @@ def create_token_vocab(train):
 
 
 def token_index(tok, vocab):
-    oov = len(vocab)
+    oov = len(vocab) + 1 #shifted so that vocab indicies is 1 to max
     ind = tok
-    if not pd.isnull(tok):  # new since last time: deal with the empty lines which we didn't drop yet
-        if tok in vocab:  # if token in vocabulary
-            ind = vocab.index(tok)
-        else:  # else it's OOV
-            ind = oov
+
+    if tok in vocab:  # if token in vocabulary
+        ind = vocab.index(tok) + 1
+    else:  # else it's OOV
+        ind = oov
     return ind
 
 
