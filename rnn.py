@@ -147,6 +147,7 @@ def single_pred(predictions):
 
     single_pred = [np.where(preds == np.amax(preds)) for preds in predictions]
 
+    #TODO: fix this line, current error : list indices must be integers or slices, not tuple
     labels = [LABELS[i] for i in single_pred]
 
     return labels
