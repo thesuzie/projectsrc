@@ -6,7 +6,8 @@ from sklearn.metrics import confusion_matrix, classification_report
 
 
 def evaluate_classifier(y, preds, file):
-    context_categories = ["1", "2", "3", "4", "5", "6", "7", "9"]
+    context_categories = ["sex", "relationships", "ewhoring", "online_crime", "description", "real_world_abuse",
+          "politics_ideology", "story"]
 
     print(classification_report(y, preds, target_names=context_categories))
 
