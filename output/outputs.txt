@@ -1,0 +1,71 @@
+Train dataset imbalanced:
+label, Count of labels
+[[  1  57]
+ [  2 102]
+ [  3 205]
+ [  4  29]
+ [  5  95]
+ [  6  30]
+ [  7  40]
+ [  9 134]]
+
+16/03/2021 16:29:24
+/Users/suziewelby/year3/compsci/project/src/output/rnn_indices_IM.png:
+epochs = 7
+batch size = 30
+              precision    recall  f1-score   support
+
+           1       0.00      0.00      0.00        57
+           2       0.00      0.00      0.00       102
+           3       0.75      0.84      0.79       205
+           4       0.00      0.00      0.00        29
+           5       0.44      0.36      0.39        95
+           6       0.00      0.00      0.00        30
+           7       0.00      0.00      0.00        40
+           9       0.30      0.85      0.44       134
+
+    accuracy                           0.46       692
+   macro avg       0.19      0.26      0.20       692
+weighted avg       0.34      0.46      0.37       692
+
+
+
+
+16/03/2021 16:49:13
+/Users/suziewelby/year3/compsci/project/src/output/rnn_indices_IM.png:
+batch_size = 30
+epochs = 10
+              precision    recall  f1-score   support
+
+           1       0.00      0.00      0.00        57
+           2       0.00      0.00      0.00       102
+           3       0.70      0.90      0.78       205
+           4       0.00      0.00      0.00        29
+           5       1.00      0.03      0.06        95
+           6       0.00      0.00      0.00        30
+           7       0.00      0.00      0.00        40
+           9       0.26      0.83      0.40       134
+
+    accuracy                           0.43       692
+   macro avg       0.24      0.22      0.16       692
+weighted avg       0.39      0.43      0.32       692
+
+
+16/03/2021 16:54:46
+batch_size = 30
+epochs = 8
+/Users/suziewelby/year3/compsci/project/src/output/rnn_indices_IM.png: 
+              precision    recall  f1-score   support
+
+           1       0.00      0.00      0.00        57
+           2       0.13      0.03      0.05       102
+           3       0.78      0.89      0.83       205
+           4       0.00      0.00      0.00        29
+           5       0.00      0.00      0.00        95
+           6       0.00      0.00      0.00        30
+           7       0.00      0.00      0.00        40
+           9       0.24      0.79      0.37       134
+
+    accuracy                           0.42       692
+   macro avg       0.14      0.21      0.16       692
+weighted avg       0.30      0.42      0.33       692

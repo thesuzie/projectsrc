@@ -10,6 +10,7 @@ from collections import Counter
 import pandas as pd  # data processing, CSV file I/O (e.g. pd.read_csv)
 # sklearn libraries
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import f1_score
 # keras libraries
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
@@ -17,7 +18,10 @@ from keras.utils import to_categorical
 from keras.models import Sequential, Model
 from keras.layers import Dense, LSTM, Embedding, Input, Bidirectional, Dropout, GlobalMaxPool1D
 from keras.callbacks import EarlyStopping
+from keras import backend as K
+# my libraries
 from evaluation import evaluate_classifier
+
 
 # values from the full (unbalanced) dataset
 
@@ -25,7 +29,7 @@ from evaluation import evaluate_classifier
 
 LABELS = ["sex", "relationships", "ewhoring", "online_crime", "description", "real_world_abuse",
           "politics_ideology", "story"]
-context_categories = ["1", "2", "3", "4", "5", "6", "7", "9"]
+context_categories = [1, 2, 3, 4, 5, 6, 7, 9]
 max_seq_len = 273
 unique_tokens = 11942
 oov = unique_tokens + 1
@@ -34,17 +38,33 @@ vocab_size = unique_tokens + 2
 embedding_dim = 64
 n_labs = 8
 METRICS = [
-    keras.metrics.TruePositives(name='tp'),
-    keras.metrics.FalsePositives(name='fp'),
-    keras.metrics.TrueNegatives(name='tn'),
-    keras.metrics.FalseNegatives(name='fn'),
     keras.metrics.BinaryAccuracy(name='accuracy'),
     keras.metrics.Precision(name='precision'),
     keras.metrics.Recall(name='recall'),
-    keras.metrics.AUC(name='auc'),
+    f1_score
 ]
 
 # prep_indices()
+
+def recall_m(y_true, y_pred):
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+    recall = true_positives / (possible_positives + K.epsilon())
+    return recall
+
+
+def precision_m(y_true, y_pred):
+    true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+    predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+    precision = true_positives / (predicted_positives + K.epsilon())
+    return precision
+
+
+def f1_m(y_true, y_pred):
+    precision = precision_m(y_true, y_pred)
+    recall = recall_m(y_true, y_pred)
+    return 2*((precision*recall)/(precision+recall+K.epsilon()))
+
 
 
 def plot_graphs(history, metric):
@@ -136,6 +156,22 @@ def onehot_labels(labels):
     return encoded
 
 
+def int_to_text_label(labels):
+
+    text_labels = []
+    for l in labels:
+        print(f"l: {l}")
+        if l == 9:
+            text_labels.append(LABELS[7])
+            print(f"label: {LABELS[7]}")
+
+        else:
+            text_labels.append(LABELS[l-1])
+            print(f"label: {LABELS[l-1]}")
+
+    return text_labels
+
+
 def convert_to_list(tokens):
     i = 0
     l = len(tokens)
@@ -148,10 +184,18 @@ def convert_to_list(tokens):
     return tok_list
 
 
-def single_pred(predictions):
+def single_pred(preds):
+    labels = []
+
+    for p in preds:
+        index_max = (np.where(p == np.amax(p)))[0]
+        l = context_categories[index_max[0]]
+        labels.append(l)
+
+    return labels
 
 
-    #categories = ["0", "sex", "relationships", "ewhoring", "online_crime", "description", "real_world_abuse", "politics_ideology", "8", "story"]
+def single_pred_text(predictions):
 
     preds = predictions
     labels = []
@@ -159,6 +203,8 @@ def single_pred(predictions):
         index_max = (np.where(p == np.amax(p)))[0]
         #print(f"index:  {index_max}")
         l = LABELS[index_max[0]]
+        print(f"pred: {p}")
+        print(f"label: {l}")
         labels.append(l)
 
     return labels
@@ -180,7 +226,7 @@ def make_model():
 
     inp = Input(shape=(max_seq_len,))
     x = Embedding(vocab_size, embedding_dim)(inp)
-    x = LSTM(60, return_sequences=True,dropout=0.5, recurrent_dropout=0.5)(x)
+    x = LSTM(60, return_sequences=True, dropout=0.5, recurrent_dropout=0.5)(x)
     x = GlobalMaxPool1D()(x)
     x = Dense(50, activation="relu")(x)
     x = Dropout(0.5)(x)
@@ -189,7 +235,7 @@ def make_model():
     model = Model(inputs=inp, outputs=x)
     model.compile(loss='binary_crossentropy',
                   optimizer='adam',
-                  metrics=['accuracy'])
+                  metrics=['accuracy', f1_m, precision_m, recall_m])
 
     print(model.summary())
 
@@ -202,28 +248,30 @@ test_dataset = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/test_tra
 
 x_train = create_padded(convert_to_list(train_dataset["Token Indices"]))
 y_train = np.array(onehot_labels(train_dataset["Label"]))
-print(y_train[0:4])
+
 
 #weights = find_biases(train_dataset["Label"])
 
 X_train, X_val, y_train, y_val = create_validation_set(x_train, y_train)
 
 x_test = create_padded(convert_to_list(test_dataset["Token Indices"]))
-y_test = np.array(onehot_labels(test_dataset["Label"]))
+y_test = test_dataset["Label"]
 
 model = make_model()
-batch_size = 32
-epochs = 2
+batch_size = 30
+epochs = 8
 
 early = EarlyStopping(monitor="val_loss", mode="min", patience=20)
 callbacks_list = [early]
 
 
-model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs, validation_data=(X_val, y_val), callbacks=callbacks_list)
-
+history = model.fit(X_train, y_train, batch_size=batch_size, epochs=epochs, validation_data=(X_val, y_val), callbacks=callbacks_list)
+#plot_graphs(history, 'accuracy')
 y_pred = model.predict(x_test)
 
-print(y_pred[0:4])
+#print(y_pred[0:4])
+
+#y_pred = pd.read_csv("/Users/suziewelby/year3/compsci/project/src/output/y_rnn_indicies_IM.csv")
 
 
 np.savetxt("/Users/suziewelby/year3/compsci/project/src/output/y_rnn_indicies_IM.csv", y_pred, delimiter=',')
